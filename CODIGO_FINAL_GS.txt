@@ -1,0 +1,282 @@
+// =============================================================
+// BACKEND DO APP WEB DO ACAMPANTE — DISCÍPULO RADICAL 2026
+// VERSÃO: 2.1 (FINAL) - COM FUNÇÕES COMPLETAS
+// =============================================================
+
+// SENHAS DOS SELOS (4 DÍGITOS)
+var SEAL_PASSWORDS = {
+  1: '4821',  // Renúncia
+  2: '7356',  // Renovação
+  3: '1947',  // Identidade
+  4: '6283',  // Comunhão
+  5: '5094',  // Honra
+  6: '3617',  // Serviço
+  7: '8472'   // Envio
+};
+
+// ============ CONFIGURAÇÃO INICIAL ============
+function setupSheets() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // 1. Acampantes
+  var acampantes = ss.getSheetByName('Acampantes');
+  if (!acampantes) acampantes = ss.insertSheet('Acampantes');
+  if (acampantes.getLastRow() === 0) {
+      acampantes.appendRow(['ID','Nome','DataNascimento','Sexo','Idade','DataCadastro','Selo1','Selo2','Selo3','Selo4','Selo5','Selo6','Selo7','ProfilePic']);
+      acampantes.getRange(1,1,1,14).setFontWeight('bold');
+      acampantes.setFrozenRows(1);
+  }
+
+  // 2. Admins
+  var admins = ss.getSheetByName('Admins');
+  if (!admins) admins = ss.insertSheet('Admins');
+  if (admins.getLastRow() === 0) {
+      admins.appendRow(['Email','Senha','Nome','Nivel','Ativo']);
+      admins.appendRow(['admin@acamp.com','1234','Mestre','master','TRUE']);
+      admins.getRange(1,1,1,5).setFontWeight('bold');
+  }
+
+  // 3. LogSelos
+  var log = ss.getSheetByName('LogSelos');
+  if (!log) log = ss.insertSheet('LogSelos');
+  if (log.getLastRow() === 0) {
+      log.appendRow(['Timestamp','AcampanteID','NomeCampista','NumSelo','ValidadoPor']);
+      log.setFrozenRows(1);
+  }
+
+  // 4. Vouchers (NOVO)
+  var v = ss.getSheetByName('Vouchers');
+  if (!v) v = ss.insertSheet('Vouchers');
+  if (v.getLastRow() === 0) {
+      v.appendRow(['Codigo','Status','GeradoEm','GeradoPor','UsadoEm','UsadoPorID']);
+      v.setFrozenRows(1);
+  }
+
+  // 5. RespostasSermoes (NOVO)
+  var s = ss.getSheetByName('RespostasSermoes');
+  if (!s) s = ss.insertSheet('RespostasSermoes');
+  if (s.getLastRow() === 0) {
+      s.appendRow(['Timestamp','AcampanteID','Nome','SeloNum','Resumo','DeusFalou','Decisao']);
+      s.setFrozenRows(1);
+  }
+}
+
+// ============ ROTAS (JSONP) ============
+function doGet(e) {
+  var cb = e.parameter.callback;
+  var action = e.parameter.action;
+  
+  try {
+    // Roteamento de POST via GET (Payload)
+    if (action === 'post' || e.parameter.payload) {
+        var payload = JSON.parse(e.parameter.payload);
+        var act = payload.action;
+        
+        if (act === 'register') return respond(registerCamper(payload), cb);
+        if (act === 'login') return respond(loginCamper(payload), cb);
+        if (act === 'validateSeal') return respond(validateSeal(payload), cb);
+        if (act === 'validateVoucher') return respond(validateVoucher(payload), cb);
+        if (act === 'generateVouchers') return respond(generateVouchers(payload), cb);
+        if (act === 'saveSermonAnswers') return respond(saveSermonAnswers(payload), cb);
+        if (act === 'adminLogin') return respond(adminLogin(payload), cb);
+        if (act === 'getAll') return respond(getAllCampers(), cb); // Admin use
+        
+        return respond({status:'error', message:'Action desconhecida no payload'}, cb);
+    }
+    
+    // Roteamento GET Puro
+    if (action === 'getAll') return respond(getAllCampers(), cb);
+    if (action === 'getStats') return respond(getStats(), cb);
+    
+    return respond({status:'success', message:'API Online'}, cb);
+    
+  } catch (err) {
+    return respond({status:'error', message: err.toString()}, cb);
+  }
+}
+
+// Fallback POST real (opcional)
+function doPost(e) {
+  return ContentService.createTextOutput("Use GET com JSONP").setMimeType(ContentService.MimeType.TEXT);
+}
+
+// ============ CONTROLLERS ============
+
+function registerCamper(d) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Acampantes');
+    var id = 'CAMP-' + new Date().getTime().toString(36).toUpperCase();
+    var idade = calcIdade(d.dataNascimento);
+    
+    // ID, Nome, DataNascimento, Sexo, Idade, DataCadastro, S1..S7, Pic
+    sheet.appendRow([
+        id, d.nome.toUpperCase(), d.dataNascimento, d.sexo, idade, new Date(),
+        false, false, false, false, false, false, false, '' // Selos vazios
+    ]);
+    
+    // Retorna user formatado
+    return {
+        status: 'success',
+        id: id,
+        camper: {
+            id: id, nome: d.nome.toUpperCase(), sexo: d.sexo, idade: idade,
+            selos: [false,false,false,false,false,false,false],
+            profilePic: ''
+        }
+    };
+}
+
+function loginCamper(d) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Acampantes');
+    var rows = sheet.getDataRange().getValues();
+    
+    // Busca simples por Nome (primeiro nome match) e Senha (DDMM)
+    // Senha esperada: DDMM (ex: 0510). No banco está YYYY-MM-DD (ex: 2005-10-05)
+    
+    var searchName = d.nome.trim().toUpperCase();
+    var searchPass = d.senha.trim(); // DDMM
+    
+    for (var i = 1; i < rows.length; i++) {
+        var row = rows[i];
+        var dbName = row[1];
+        var dbDob = row[2]; // String YYYY-MM-DD
+        
+        // Match Nome (Começa com)
+        if (dbName.indexOf(searchName) === 0 || dbName.split(' ')[0] === searchName) {
+            // Check Senha
+            // Extrair DD e MM de YYYY-MM-DD
+            var parts = dbDob.split('-'); // [2005, 10, 05]
+            if(parts.length < 3) continue;
+            var ddmm = parts[2] + parts[1]; // 0510
+            
+            if (ddmm === searchPass) {
+                return {
+                    status: 'success',
+                    camper: formatCamper(row)
+                };
+            }
+        }
+    }
+    return { status: 'error', message: 'Guerreiro não encontrado ou data incorreta.' };
+}
+
+function validateSeal(d) {
+    // d: { sealNum: 1, password: '1234', camperId: '...' }
+    var expected = SEAL_PASSWORDS[d.sealNum];
+    if (d.password !== expected) return { status: 'error', message: 'Senha incorreta' };
+    
+    // Update Sheet
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Acampantes');
+    var rows = sheet.getDataRange().getValues();
+    var rowIndex = -1;
+    
+    for(var i=1; i<rows.length; i++) {
+        if(rows[i][0] === d.camperId) {
+            rowIndex = i + 1; // 1-based
+            break;
+        }
+    }
+    
+    if(rowIndex === -1) return { status: 'error', message: 'Campista não achado' };
+    
+    // Coluna do selo = 6 + sealNum (Selo1 é col 7)
+    sheet.getRange(rowIndex, 6 + parseInt(d.sealNum)).setValue(true);
+    
+    // Log
+    var log = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('LogSelos');
+    log.appendRow([new Date(), d.camperId, rows[rowIndex-1][1], d.sealNum, 'AUTO']);
+    
+    return { status: 'success' };
+}
+
+function validateVoucher(d) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Vouchers');
+    var rows = sheet.getDataRange().getValues();
+    var code = d.code.toUpperCase().trim();
+    
+    for(var i=1; i<rows.length; i++) {
+        if(rows[i][0] === code) {
+            if(rows[i][1] === 'DISPONIVEL') {
+                sheet.getRange(i+1, 2).setValue('USADO');
+                sheet.getRange(i+1, 5).setValue(new Date());
+                return { status: 'success' };
+            } else {
+                return { status: 'error', message: 'Voucher já utilizado' };
+            }
+        }
+    }
+    return { status: 'error', message: 'Código inválido' };
+}
+
+function generateVouchers(d) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Vouchers');
+    var qtd = parseInt(d.qtd) || 5;
+    var codes = [];
+    var out = [];
+    
+    for(var k=0; k<qtd; k++) { // k=0 ...
+        var c = 'ACAMP-' + Math.floor(1000 + Math.random() * 9000);
+        codes.push([c, 'DISPONIVEL', new Date(), 'admin', '', '']);
+        out.push(c);
+    }
+    
+    if(codes.length>0) sheet.getRange(sheet.getLastRow()+1, 1, codes.length, 6).setValues(codes);
+    return { status: 'success', codes: out };
+}
+
+function saveSermonAnswers(d) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('RespostasSermoes');
+    sheet.appendRow([new Date(), d.camperId, '?', d.seloNum, d.resumo, d.deusFalou, d.decisao]);
+    return { status: 'success' };
+}
+
+function adminLogin(d) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Admins');
+    var rows = sheet.getDataRange().getValues();
+    for(var i=1; i<rows.length; i++) {
+        if(rows[i][0] == d.email && rows[i][1] == d.senha) {
+            return { status: 'success', token: 'adm_ok' };
+        }
+    }
+    return { status: 'error', message: 'Admin invalido' };
+}
+
+function getAllCampers() {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Acampantes');
+    var data = sheet.getDataRange().getValues();
+    var list = [];
+    for(var i=1; i<data.length; i++) {
+        list.push(formatCamper(data[i]));
+    }
+    return { status: 'success', campers: list };
+}
+
+// ============ UTILS ============
+function calcIdade(dobStr) {
+    if(!dobStr) return 0;
+    var dob = new Date(dobStr);
+    var diff = Date.now() - dob.getTime();
+    var age = new Date(diff); 
+    return Math.abs(age.getUTCFullYear() - 1970);
+}
+
+function formatCamper(row) {
+    // Row: 0=ID, 1=Nome, 2=DOB, 3=Sexo, 4=Idade, 5=DataCad, 6..12=Selos, 13=Pic
+    return {
+        id: row[0],
+        nome: row[1],
+        sexo: row[3],
+        idade: row[4],
+        selos: [row[6]===true, row[7]===true, row[8]===true, row[9]===true, row[10]===true, row[11]===true, row[12]===true],
+        profilePic: row[13] || ''
+    };
+}
+
+// JSONP RESPONDER
+function respond(data, callback) {
+  var str = JSON.stringify(data);
+  if(callback) {
+      return ContentService.createTextOutput(callback + '(' + str + ')')
+             .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(str).setMimeType(ContentService.MimeType.JSON);
+}

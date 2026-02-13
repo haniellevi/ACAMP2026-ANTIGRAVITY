@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Conexão - Acampante 2026</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #logs {
+            background: #222;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🕵️ Diagnóstico de Conexão (Google Apps Script)</h1>
+
+    <div class="box">
+        <label for="apiUrl">URL da API (Web App):</label>
+        <input type="text" id="apiUrl" placeholder="https://script.google.com/macros/s/......./exec"
+            value="https://script.google.com/macros/s/AKfycbzwZ0Jtd6BJSRvj-A3l4pEjslkxrmuqb5scv1qvr_j9SoPP8eG6UIz_8_jZs4gDhgKh/exec">
+        <p style="font-size: 12px; color: #666;">A URL acima deve terminar em <code>/exec</code> e conter
+            <code>/macros/s/</code>.
+        </p>
+        <button onclick="runTest()">Testar Conexão Agora</button>
+    </div>
+
+    <div class="box">
+        <h3>Logs de Diagnóstico:</h3>
+        <div id="logs">Pronto para testar...</div>
+        <div id="statusResult" class="status"></div>
+    </div>
+
+    <div class="box">
+        <h3>Soluções Comuns:</h3>
+        <ul>
+            <li>❌ <strong>Erro "URL Inválida":</strong> Você está usando uma URL de biblioteca (library/d). Precisa
+                implantar como Web App.</li>
+            <li>❌ <strong>Erro de Script / SyntaxError:</strong> O código no Apps Script pode ter erros de sintaxe ou
+                não foi salvo.</li>
+            <li>❌ <strong>Timeout (15s):</strong> A URL pode estar errada (404), o script não foi implantado como
+                "Qualquer pessoa", ou a função `setupSheets` não foi rodada.</li>
+            <li>✅ <strong>Sucesso:</strong> Se aparecer um JSON com dados, a conexão está perfeita! Copie a URL para o
+                `app.html`.</li>
+        </ul>
+    </div>
+
+    <script>
+        function log(msg, type = 'info') {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? 'red' : (type === 'success' ? 'lightgreen' : '#0f0');
+            logs.innerHTML += `<div style="color:${color}">[${timestamp}] ${msg}</div>`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(`[${type}] ${msg}`);
+        }
+
+        let _jsonpId = 0;
+        function jsonp(url) {
+            return new Promise((resolve, reject) => {
+                const cbName = '_jsonp_cb_test_' + (++_jsonpId) + '_' + Date.now();
+                log(`Iniciando requisição JSONP... Callback: ${cbName}`);
+
+                const timeout = setTimeout(() => {
+                    log(`TIMEOUT! O servidor não respondeu em 15 segundos.`, 'error');
+                    cleanUp();
+                    reject(new Error('Timeout de conexão.Verifique se implantou como "Qualquer pessoa" e se a URL está correta.'));
+                }, 15000);
+
+                window[cbName] = function (data) {
+                    log(`SUCESSO! Resposta recebida.`, 'success');
+                    log(`Dados: ${JSON.stringify(data).substring(0, 100)}...`);
+                    cleanUp();
+                    resolve(data);
+                };
+
+                const cleanUp = () => {
+                    clearTimeout(timeout);
+                    delete window[cbName];
+                    if (script.parentNode) script.remove();
+                };
+
+                const script = document.createElement('script');
+                script.src = url + '&callback=' + cbName;
+                script.onerror = function () {
+                    log(`ERRO DE SCRIPT! O navegador não conseguiu carregar o script.`, 'error');
+                    log(`Causas prováveis: URL 404 (inexistente), Bloqueio de Rede, ou URL não é um script executável.`, 'error');
+                    cleanUp();
+                    reject(new Error('Erro de Script (URL inválida ou bloqueada).'));
+                };
+                document.body.appendChild(script);
+                log(`Script injetado no DOM: ${script.src}`);
+            });
+        }
+
+        async function runTest() {
+            const urlInput = document.getElementById('apiUrl').value.trim();
+            const statusDiv = document.getElementById('statusResult');
+            document.getElementById('logs').innerHTML = '';
+            statusDiv.textContent = 'Testando...';
+            statusDiv.className = 'status';
+
+            log('--- INICIANDO TESTE ---');
+            log(`URL fornecida: ${urlInput}`);
+
+            // 1. Validar formato da URL
+            if (urlInput.includes('/library/')) {
+                log('❌ ERRO FATAL: URL de Biblioteca detectada (/library/).', 'error');
+                log('Você NÃO PODE usar URL de biblioteca para o frontend.', 'error');
+                log('SOLUÇÃO: Vá em Implantar > Nova implantação > App da Web > Copie a URL que termina em /exec.', 'error');
+                statusDiv.textContent = 'FALHA: URL de Biblioteca';
+                statusDiv.className = 'status error';
+                return;
+            }
+
+            if (!urlInput.endsWith('/exec')) {
+                log('⚠️ AVISO: A URL não termina com "/exec". Isso geralmente indica URL de desenvolvimento (/dev) ou incorreta.', 'error');
+                log('A URL de produção deve termianr com "/exec".', 'error');
+            }
+
+            // 2. Testar conexão real
+            try {
+                const testUrl = urlInput + '?action=getStats';
+                const result = await jsonp(testUrl);
+
+                if (result && (result.status === 'success' || result.status === 'error')) {
+                    log('✅ CONEXÃO ESTABELECIDA COM SUCESSO!', 'success');
+                    if (result.status === 'error') {
+                        log(`⚠️ O backend respondeu com erro lógico: ${result.message}`, 'error');
+                    } else {
+                        log(`📊 Dados recebidos: Total Acampantes=${result.total}`, 'success');
+                    }
+                    statusDiv.innerHTML = `✅ SUCESSO! A API está respondendo.<br>Copie a URL correta para o app.html.`;
+                    statusDiv.className = 'status success';
+                } else {
+                    log('❓ Resposta estranha recebida (formato inesperado).', 'error');
+                }
+
+            } catch (err) {
+                log(`❌ FALHA NO TESTE: ${err.message}`, 'error');
+                statusDiv.textContent = `FALHA: ${err.message}`;
+                statusDiv.className = 'status error';
+            }
+        }
+    </script>
+</body>
+
+</html>
