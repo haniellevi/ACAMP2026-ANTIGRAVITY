@@ -146,12 +146,135 @@
       margin-bottom: 24px
     }
 
+    /* STEP INDICATORS */
+    .step-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0 10px;
+    }
+
+    .step-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .step-dot.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .step-dot.completed {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .step-label {
+      text-align: center;
+      font-size: .8em;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* PAGE CONTAINER */
+    .quiz-page {
+      display: none;
+      animation: fadeSlide .4s ease;
+    }
+
+    .quiz-page.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* PAGINATION NAV */
+    .pagination-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-nav {
+      padding: 14px 28px;
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      background: transparent;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: .9em;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-nav:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-nav:disabled:hover {
+      background: transparent;
+      color: var(--primary);
+    }
+
+    .btn-nav.primary {
+      background: var(--primary-g);
+      border: none;
+      color: #fff;
+    }
+
+    .btn-nav.primary:hover {
+      box-shadow: 0 8px 25px rgba(108, 92, 231, .3);
+    }
+
+    .page-counter {
+      font-size: .85em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .cat-answered {
+      font-size: .78em;
+      color: var(--accent);
+      font-weight: 600;
+      text-align: center;
+      margin-top: 8px;
+    }
+
     /* CATEGORY */
     .category-header {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 30px 0 16px;
+      margin: 10px 0 16px;
       padding: 14px 20px;
       background: var(--surface);
       border-radius: 14px;
@@ -594,8 +717,9 @@
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <div class="progress-text" id="progressText">0 de 25 respondidas</div>
+      <div class="step-indicators" id="stepIndicators"></div>
+      <div class="step-label" id="stepLabel"></div>
       <div id="questions"></div>
-      <button class="btn-submit" id="btnSubmit" disabled onclick="showResult()">VER MEU PERFIL DE DISCÍPULO</button>
     </div>
 
     <div class="result" id="resultSection">
@@ -678,6 +802,7 @@
 
     let answers = new Array(25).fill(null);
     let userData = { name: '', church: '' };
+    let currentPage = 0;
 
     // Esconde o quiz inicialmente e mostra só o form (Hero já tem o form)
     document.getElementById('quiz-section').style.display = 'none';
@@ -708,39 +833,85 @@
       document.querySelector('.hero').style.display = 'none';
       document.getElementById('quiz-section').style.display = 'block';
 
-      // Renderiza perguntas (usando as constantes globais CATS e QS que já existem no topo do arquivo ou aqui)
       renderQuestions();
+      renderStepIndicators();
+      goToPage(0);
+    }
+
+    function renderStepIndicators() {
+      let html = '';
+      CATS.forEach((c, i) => {
+        html += `<div class="step-dot" id="step${i}" onclick="goToPage(${i})" title="${c.name}"></div>`;
+      });
+      document.getElementById('stepIndicators').innerHTML = html;
+    }
+
+    function updateStepIndicators() {
+      CATS.forEach((c, i) => {
+        const dot = document.getElementById(`step${i}`);
+        const catAnswered = answers.slice(i * 5, i * 5 + 5).filter(a => a !== null).length;
+        dot.className = 'step-dot';
+        if (i === currentPage) dot.classList.add('active');
+        else if (catAnswered === 5) dot.classList.add('completed');
+      });
+      const c = CATS[currentPage];
+      const catAnswered = answers.slice(currentPage * 5, currentPage * 5 + 5).filter(a => a !== null).length;
+      document.getElementById('stepLabel').innerHTML = `${c.icon} ${c.name} <span style="color:var(--accent)">(${catAnswered}/5)</span>`;
     }
 
     function renderQuestions() {
       const qDiv = document.getElementById('questions');
       let html = '';
-      let catIdx = -1;
 
-      QS.forEach((q, i) => {
-        if (q.cat !== catIdx) {
-          catIdx = q.cat;
-          const c = CATS[catIdx];
-          html += `<div class="category-header"><div class="cat-icon">${c.icon}</div><div class="cat-info"><h2>${c.name}</h2><span>Perguntas ${catIdx * 5 + 1}-${catIdx * 5 + 5}</span></div></div>`;
+      CATS.forEach((cat, catIdx) => {
+        html += `<div class="quiz-page" id="page${catIdx}">`;
+        html += `<div class="category-header"><div class="cat-icon">${cat.icon}</div><div class="cat-info"><h2>${cat.name}</h2><span>Perguntas ${catIdx * 5 + 1}-${catIdx * 5 + 5}</span></div></div>`;
+
+        for (let qi = catIdx * 5; qi < catIdx * 5 + 5; qi++) {
+          const q = QS[qi];
+          let optsWithVal = q.opts.map((text, idx) => ({ text, val: idx + 1 }));
+
+          // Fisher-Yates Shuffle
+          for (let k = optsWithVal.length - 1; k > 0; k--) {
+            const j = Math.floor(Math.random() * (k + 1));
+            [optsWithVal[k], optsWithVal[j]] = [optsWithVal[j], optsWithVal[k]];
+          }
+
+          html += `<div class="question" id="q${qi}"><div class="q-num">Pergunta ${qi + 1}</div><div class="q-text">${q.q}</div><div class="options">`;
+          optsWithVal.forEach((o, j) => {
+            html += `<div class="option" onclick="pick(${qi}, ${o.val}, ${j})" id="o${qi}_${j}"><div class="radio"></div><div class="label">${o.text}</div></div>`;
+          });
+          html += '</div></div>';
         }
 
-        // Prepare options with their original values (1-4)
-        let optsWithVal = q.opts.map((text, idx) => ({ text, val: idx + 1 }));
-
-        // Fisher-Yates Shuffle
-        for (let k = optsWithVal.length - 1; k > 0; k--) {
-          const j = Math.floor(Math.random() * (k + 1));
-          [optsWithVal[k], optsWithVal[j]] = [optsWithVal[j], optsWithVal[k]];
+        // Navigation buttons
+        html += '<div class="pagination-nav">';
+        if (catIdx > 0) {
+          html += `<button class="btn-nav" onclick="goToPage(${catIdx - 1})">← Anterior</button>`;
+        } else {
+          html += '<div></div>';
         }
+        html += `<span class="page-counter">${catIdx + 1} de ${CATS.length}</span>`;
+        if (catIdx < CATS.length - 1) {
+          html += `<button class="btn-nav primary" onclick="goToPage(${catIdx + 1})">Próxima →</button>`;
+        } else {
+          html += `<button class="btn-submit" id="btnSubmit" disabled onclick="showResult()" style="margin:0;padding:14px 28px;font-size:.9em;width:auto">VER MEU PERFIL ✨</button>`;
+        }
+        html += '</div>';
 
-        html += `<div class="question" id="q${i}"><div class="q-num">Pergunta ${i + 1}</div><div class="q-text">${q.q}</div><div class="options">`;
-        optsWithVal.forEach((o, j) => {
-          // Pass the Value (score) and the Visual Index (j)
-          html += `<div class="option" onclick="pick(${i}, ${o.val}, ${j})" id="o${i}_${j}"><div class="radio"></div><div class="label">${o.text}</div></div>`;
-        });
-        html += '</div></div>';
+        html += '</div>'; // close quiz-page
       });
+
       qDiv.innerHTML = html;
+    }
+
+    function goToPage(pageIdx) {
+      document.querySelectorAll('.quiz-page').forEach(p => p.classList.remove('active'));
+      const page = document.getElementById(`page${pageIdx}`);
+      page.classList.add('active');
+      currentPage = pageIdx;
+      updateStepIndicators();
+      window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 10, behavior: 'smooth' });
     }
 
     // Updated pick function: receives Value (score) instead of Index
@@ -754,13 +925,15 @@
 
       document.getElementById(`q${qi}`).classList.add('answered');
       updateProgress();
+      updateStepIndicators();
     }
 
     function updateProgress() {
       const done = answers.filter(a => a !== null).length;
       document.getElementById('progressFill').style.width = (done / 25 * 100) + '%';
       document.getElementById('progressText').textContent = `${done} de 25 respondidas`;
-      document.getElementById('btnSubmit').disabled = done < 25;
+      const btn = document.getElementById('btnSubmit');
+      if (btn) btn.disabled = done < 25;
     }
 
     // SOBRESCREVE A FUNÇÃO showResult ORIGINAL PARA INCLUIR O ENVIO
