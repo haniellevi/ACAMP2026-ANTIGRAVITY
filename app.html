@@ -497,6 +497,43 @@
             opacity: 1;
             pointer-events: all;
         }
+
+        /* --- KEYFRAMES --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -505,6 +542,37 @@
     <!-- LOADING -->
     <div id="loading-overlay">
         <div class="loader"></div>
+    </div>
+
+    <!-- WELCOME SCREEN (NOVA HOME INICIAL) -->
+    <div id="view-welcome"
+        style="display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.95)), url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; text-align: center;">
+
+        <div style="margin-bottom: 40px; animation: fadeInDown 1s ease;">
+            <h3
+                style="color: var(--neon); letter-spacing: 4px; font-size: 14px; margin-bottom: 10px; font-family: var(--font-title);">
+                PROJETO</h3>
+            <h1
+                style="font-size: 72px; line-height: 0.8; color: var(--text); font-family: var(--font-title); text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);">
+                ACAMP<br><span style="color: var(--fire); font-size: 84px;">2026</span></h1>
+            <div style="height: 2px; width: 60px; background: var(--fire); margin: 20px auto;"></div>
+            <p style="color: var(--muted); font-size: 16px; max-width: 250px; margin: 0 auto; line-height: 1.4;">"Nenhum
+                soldado em serviço se envolve em negócios civis..."</p>
+        </div>
+
+        <div
+            style="width: 100%; max-width: 280px; display: flex; flex-direction: column; gap: 15px; animation: fadeInUp 1s ease 0.3s backwards;">
+            <button class="btn btn-neon" onclick="navContainer('voucher')"
+                style="font-size: 16px; padding: 18px;">COMEÇAR JORNADA</button>
+            <button class="btn btn-outline" onclick="navContainer('login')"
+                style="font-size: 12px; border-color: rgba(255,255,255,0.1); color: var(--muted);">JÁ SOU UM
+                GUERREIRO</button>
+        </div>
+
+        <div onclick="openAdminDiscrete()"
+            style="position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 2px; cursor: pointer;">
+            MINISTÉRIO DE JOVENS • 2026
+        </div>
     </div>
 
     <!-- ONBOARDING (PRIMEIRO ACESSO) -->
@@ -570,6 +638,8 @@
             style="font-size: 24px; text-transform: uppercase;">
 
         <button class="btn" onclick="submitVoucher()">VALIDAR ACESSO</button>
+        <button class="btn btn-outline" onclick="navContainer('welcome')"
+            style="margin-top: 15px; border-color: rgba(255,255,255,0.1); color: var(--muted); font-size: 12px;">VOLTAR</button>
         <p style="text-align: center; font-size: 10px; color: var(--muted); margin-top: 20px;">
             Apenas guerreiros inscritos.<br>Problemas? Procure a Coordenação.
         </p>
@@ -1145,12 +1215,9 @@
             renderFullSchedule();
             renderEuDeus(); // Renderiza cards bloqueados/desbloqueados
 
-            if (!USER && !VOUCHER_OK) {
-                // Visitante sem nada
-                navContainer('voucher');
-            } else if (!USER && VOUCHER_OK) {
-                // Tem voucher, mas não cadastrou
-                navContainer('onboarding');
+            if (!USER) {
+                // Se não está logado, vai para Welcome (mesmo que tenha voucher salvo)
+                navContainer('welcome');
             } else {
                 // Já é guerreiro
                 showMainApp();
@@ -1158,15 +1225,22 @@
         }
 
         function navContainer(screenId) {
+            document.getElementById('view-welcome').style.display = 'none';
             document.getElementById('view-voucher').style.display = 'none';
             document.getElementById('view-onboarding').style.display = 'none';
             document.getElementById('view-login').style.display = 'none';
             document.getElementById('main-app').style.display = 'none';
 
+            if (screenId === 'welcome') document.getElementById('view-welcome').style.display = 'flex';
             if (screenId === 'voucher') document.getElementById('view-voucher').style.display = 'flex';
             if (screenId === 'onboarding') document.getElementById('view-onboarding').style.display = 'flex';
             if (screenId === 'login') document.getElementById('view-login').style.display = 'flex';
             if (screenId === 'app') document.getElementById('main-app').style.display = 'block';
+        }
+
+        function openAdminDiscrete() {
+            navContainer('app');
+            nav('admin');
         }
 
         function showMainApp() {
@@ -1252,8 +1326,7 @@
         function openLoginView() { navContainer('login'); }
         function closeLoginView() {
             if (USER) showMainApp();
-            else if (VOUCHER_OK) navContainer('onboarding');
-            else navContainer('voucher');
+            else navContainer('welcome');
         }
 
         async function submitLogin() {
