@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selos do Passaporte — Impressão em Papel Adesivo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;800;900&family=Permanent+Marker&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .pg {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 8mm;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        .pg:last-child {
+            page-break-after: auto;
+        }
+
+        .pt {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 14pt;
+            text-align: center;
+            margin-bottom: 2mm;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .ps {
+            font-size: 7pt;
+            color: #888;
+            text-align: center;
+            margin-bottom: 4mm;
+        }
+
+        .g {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3mm;
+            width: 100%;
+        }
+
+        .s {
+            width: 3cm;
+            height: 3cm;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 2.5px solid;
+            position: relative;
+        }
+
+        .s .i {
+            font-size: 16pt;
+            margin-bottom: 1mm;
+        }
+
+        .s .n {
+            font-size: 5pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+            line-height: 1.2;
+            padding: 0 2mm;
+        }
+
+        .s .r {
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            border: 1px solid;
+        }
+
+        .s1 {
+            border-color: #1a1a2e;
+            background: linear-gradient(135deg, #fef9ef, #fff);
+            color: #1a1a2e;
+        }
+
+        .s1 .r {
+            border-color: rgba(26, 26, 46, .2);
+        }
+
+        .s2 {
+            border-color: #118ab2;
+            background: linear-gradient(135deg, #e8f4f8, #fff);
+            color: #073b4c;
+        }
+
+        .s2 .r {
+            border-color: rgba(17, 138, 178, .2);
+        }
+
+        .s3 {
+            border-color: #e63946;
+            background: linear-gradient(135deg, #fce8ea, #fff);
+            color: #9b1b24;
+        }
+
+        .s3 .r {
+            border-color: rgba(230, 57, 70, .2);
+        }
+
+        .s4 {
+            border-color: #2d6a4f;
+            background: linear-gradient(135deg, #e8f5e9, #fff);
+            color: #1b4332;
+        }
+
+        .s4 .r {
+            border-color: rgba(45, 106, 79, .2);
+        }
+
+        .s5 {
+            border-color: #d4a843;
+            background: linear-gradient(135deg, #fdf6e3, #fff);
+            color: #8b5e3c;
+        }
+
+        .s5 .r {
+            border-color: rgba(212, 168, 67, .2);
+        }
+
+        .s6 {
+            border-color: #ff6b35;
+            background: linear-gradient(135deg, #fff0e8, #fff);
+            color: #c44d1a;
+        }
+
+        .s6 .r {
+            border-color: rgba(255, 107, 53, .2);
+        }
+
+        .s7 {
+            border-color: #073b4c;
+            background: linear-gradient(135deg, #e8eef0, #fff);
+            color: #073b4c;
+        }
+
+        .s7 .r {
+            border-color: rgba(7, 59, 76, .2);
+        }
+
+        .ct {
+            font-size: 6pt;
+            color: #ccc;
+            text-align: center;
+            margin-top: 3mm;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+        }
+
+        @media screen {
+            body {
+                background: #ddd;
+                padding: 20px;
+            }
+
+            .pg {
+                margin: 20px auto;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SELO 1: RENÚNCIA -->
+    <div class="pg">
+        <p class="pt" style="color:#1a1a2e;">🏴 Selo da Renúncia</p>
+        <p class="ps">Sermão 1 — O Custo do Discipulado | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+            <div class="s s1">
+                <div class="r"></div><span class="i">🏴</span><span class="n">Selo da<br>Renúncia</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+    <!-- SELO 2: RENOVAÇÃO -->
+    <div class="pg">
+        <p class="pt" style="color:#118ab2;">🧠 Selo da Renovação</p>
+        <p class="ps">Sermão 2 — Metanoia | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+            <div class="s s2">
+                <div class="r"></div><span class="i">🧠</span><span class="n">Selo da<br>Renovação</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+    <!-- SELO 3: IDENTIDADE -->
+    <div class="pg">
+        <p class="pt" style="color:#e63946;">❤️ Selo da Identidade</p>
+        <p class="ps">Sermão 3 — Identidade e Paternidade | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+            <div class="s s3">
+                <div class="r"></div><span class="i">❤️</span><span class="n">Selo da<br>Identidade</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+    <!-- SELO 4: COMUNHÃO -->
+    <div class="pg">
+        <p class="pt" style="color:#2d6a4f;">🤝 Selo da Comunhão</p>
+        <p class="ps">Sermão 4 — O Poder da Associação | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+            <div class="s s4">
+                <div class="r"></div><span class="i">🤝</span><span class="n">Selo da<br>Comunhão</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+    <!-- SELO 5: HONRA -->
+    <div class="pg">
+        <p class="pt" style="color:#d4a843;">👑 Selo da Honra</p>
+        <p class="ps">Sermão 5 — Cultura de Honra | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+            <div class="s s5">
+                <div class="r"></div><span class="i">👑</span><span class="n">Selo da<br>Honra</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+    <!-- SELO 6: SERVIÇO -->
+    <div class="pg">
+        <p class="pt" style="color:#ff6b35;">🛠️ Selo do Serviço</p>
+        <p class="ps">Sermão 6 — Mãos à Obra | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+            <div class="s s6">
+                <div class="r"></div><span class="i">🛠️</span><span class="n">Selo do<br>Serviço</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+    <!-- SELO 7: ENVIO -->
+    <div class="pg">
+        <p class="pt" style="color:#073b4c;">⚔️ Selo do Envio</p>
+        <p class="ps">Sermão 7 — A Grande Comissão | Papel adesivo — recorte 3cm</p>
+        <div class="g">
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+            <div class="s s7">
+                <div class="r"></div><span class="i">⚔️</span><span class="n">Selo do<br>Envio</span>
+            </div>
+        </div>
+        <p class="ct">✂️ Recorte cada selo no contorno circular — 3cm de diâmetro</p>
+    </div>
+
+</body>
+
+</html>

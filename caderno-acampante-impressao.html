@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Caderno do Acampante — Discípulo Radical 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Permanent+Marker&display=swap');
+
+        :root {
+            --fire: #e63946;
+            --orange: #ff6b35;
+            --gold: #ffd166;
+            --forest: #2d6a4f;
+            --teal: #06d6a0;
+            --sky: #118ab2;
+            --navy: #073b4c;
+            --earth: #8b5e3c;
+            --cream: #fef9ef;
+            --stamp: 3cm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--navy);
+            background: #e0e0e0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+            background: white;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+
+        @media screen {
+            .page {
+                margin: 20px auto;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, .18);
+            }
+        }
+
+        /* CAPA */
+        .cover {
+            background: linear-gradient(135deg, #073b4c 0%, #118ab2 40%, #06d6a0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20mm;
+        }
+
+        .cover-badge {
+            width: 55mm;
+            height: 55mm;
+            border: 4px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12mm;
+            background: rgba(0, 0, 0, .2);
+        }
+
+        .cover-badge::before {
+            content: '';
+            position: absolute;
+            width: 63mm;
+            height: 63mm;
+            border: 2px dashed var(--gold);
+            border-radius: 50%;
+            opacity: .5;
+        }
+
+        .cover-badge .icon {
+            font-size: 42pt;
+        }
+
+        .cover h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 34pt;
+            color: var(--gold);
+            margin-bottom: 3mm;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
+        }
+
+        .cover h2 {
+            font-size: 14pt;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .8);
+            margin-bottom: 3mm;
+        }
+
+        .cover .church {
+            font-size: 8pt;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15mm;
+        }
+
+        .owner-box {
+            border: 2px solid var(--gold);
+            padding: 6mm 15mm;
+            width: 75%;
+            background: rgba(0, 0, 0, .15);
+            border-radius: 4px;
+        }
+
+        .owner-box label {
+            display: block;
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 1mm;
+        }
+
+        .owner-box .line {
+            border-bottom: 1px solid rgba(255, 255, 255, .3);
+            height: 8mm;
+            margin-bottom: 4mm;
+        }
+
+        .cover .year {
+            position: absolute;
+            bottom: 12mm;
+            font-size: 8pt;
+            color: rgba(255, 255, 255, .3);
+            letter-spacing: 4px;
+        }
+
+        /* PASSAPORTE */
+        .passport {
+            background: linear-gradient(180deg, #073b4c, #0a4f68);
+            color: white;
+            padding: 10mm 12mm;
+            border: none;
+        }
+
+        .passport-top {
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 5mm;
+            margin-bottom: 5mm;
+        }
+
+        .passport-top .emblem {
+            font-size: 36pt;
+            margin-bottom: 2mm;
+        }
+
+        .passport-top h2 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 18pt;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .passport-top p {
+            font-size: 8pt;
+            color: rgba(255, 255, 255, .6);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 1mm;
+        }
+
+        .passport-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+            margin-bottom: 6mm;
+            padding: 4mm;
+            border: 1px solid rgba(255, 255, 255, .15);
+            background: rgba(0, 0, 0, .15);
+            border-radius: 3px;
+        }
+
+        .passport-fields .f {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .passport-fields .f.full {
+            grid-column: 1/-1;
+        }
+
+        .passport-fields .f label {
+            font-size: 6pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 1mm;
+        }
+
+        .passport-fields .f .ln {
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            height: 7mm;
+        }
+
+        .stamps-title {
+            text-align: center;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 4mm;
+        }
+
+        .stamps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4mm;
+        }
+
+        .stamp-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stamp-circle {
+            width: var(--stamp);
+            height: var(--stamp);
+            border: 2px dashed rgba(255, 255, 255, .4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 7pt;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 2mm;
+            background: rgba(0, 0, 0, .2);
+        }
+
+        .stamp-label {
+            font-size: 6.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gold);
+            max-width: 35mm;
+        }
+
+        .stamp-day {
+            font-size: 5.5pt;
+            color: rgba(255, 255, 255, .4);
+            margin-top: 1mm;
+        }
+
+        .passport-footer {
+            text-align: center;
+            margin-top: 5mm;
+            padding-top: 4mm;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            font-size: 6pt;
+            color: rgba(255, 255, 255, .3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* REGRAS */
+        .page-hdr {
+            border-bottom: 3px solid var(--fire);
+            padding-bottom: 3mm;
+            margin-bottom: 6mm;
+        }
+
+        .page-hdr .tag {
+            font-size: 7pt;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .page-hdr h2 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 20pt;
+            color: var(--navy);
+        }
+
+        .rules-sec {
+            font-size: 10pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--forest);
+            margin: 5mm 0 2mm;
+            letter-spacing: 2px;
+        }
+
+        .rules {
+            list-style: none;
+            counter-reset: r;
+        }
+
+        .rules li {
+            counter-increment: r;
+            padding: 2.5mm 0 2.5mm 10mm;
+            border-bottom: 1px solid #eee;
+            font-size: 9pt;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        .rules li::before {
+            content: counter(r, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            font-weight: 800;
+            color: var(--fire);
+            font-size: 10pt;
+        }
+
+        /* PROGRAMAÇÃO */
+        .sched-card {
+            background: linear-gradient(135deg, #fff, #fef9ef);
+            border: 2px solid var(--forest);
+            border-radius: 6px;
+            padding: 4mm;
+            margin-bottom: 4mm;
+        }
+
+        .sched-card h3 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 13pt;
+            color: var(--forest);
+            margin-bottom: 2mm;
+            text-align: center;
+        }
+
+        .sched-card table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+        }
+
+        .sched-card th {
+            background: var(--forest);
+            color: white;
+            padding: 2mm;
+            text-align: center;
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sched-card td {
+            padding: 1.5mm 2mm;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 7.5pt;
+        }
+
+        .sched-card .tm {
+            font-weight: 700;
+            color: var(--fire);
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .sched-card .hl {
+            font-weight: 700;
+            color: var(--fire);
+        }
+
+        .day-icon {
+            font-size: 14pt;
+            display: block;
+            margin-bottom: 1mm;
+        }
+
+        /* SERMÃO */
+        .sermon-hdr {
+            border-left: 5px solid var(--fire);
+            padding-left: 4mm;
+            margin-bottom: 4mm;
+            background: linear-gradient(90deg, rgba(230, 57, 70, .08), transparent);
+            padding: 3mm 4mm;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .sermon-num {
+            font-size: 8pt;
+            font-weight: 800;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .sermon-ttl {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 17pt;
+            color: var(--navy);
+            line-height: 1.2;
+            margin: 1mm 0;
+        }
+
+        .sermon-sub {
+            font-size: 9pt;
+            color: #666;
+            font-style: italic;
+        }
+
+        .sermon-meta {
+            display: flex;
+            gap: 6mm;
+            margin-bottom: 4mm;
+            flex-wrap: wrap;
+        }
+
+        .sermon-meta span {
+            font-size: 7.5pt;
+            color: #888;
+        }
+
+        .sermon-meta strong {
+            color: var(--navy);
+        }
+
+        .verse-box {
+            background: linear-gradient(135deg, #fef9ef, #fff);
+            border-left: 3px solid var(--gold);
+            padding: 3mm 4mm;
+            margin-bottom: 4mm;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            font-style: italic;
+            color: #444;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .verse-box cite {
+            display: block;
+            text-align: right;
+            font-style: normal;
+            font-weight: 700;
+            color: var(--navy);
+            margin-top: 1.5mm;
+            font-size: 7.5pt;
+        }
+
+        .q-section h3 {
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--fire);
+            margin-bottom: 3mm;
+            font-weight: 800;
+        }
+
+        .q-item {
+            margin-bottom: 3mm;
+        }
+
+        .q-item p {
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 1mm;
+        }
+
+        .a-lines .ln {
+            border-bottom: 1px solid #ddd;
+            height: 6.5mm;
+        }
+
+        .notes-sec {
+            margin-top: 4mm;
+        }
+
+        .notes-sec h3 {
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--forest);
+            margin-bottom: 2mm;
+            font-weight: 800;
+        }
+
+        .notes-area {
+            border: 1px solid #ddd;
+            min-height: 35mm;
+            background: repeating-linear-gradient(transparent, transparent 6mm, #e8e8e8 6mm, #e8e8e8 6.5mm);
+            padding: 2mm;
+            border-radius: 3px;
+        }
+
+        .seal-msg {
+            margin-top: 4mm;
+            text-align: center;
+            padding: 3mm;
+            background: linear-gradient(135deg, var(--cream), #fff);
+            border: 2px dashed var(--gold);
+            border-radius: 6px;
+        }
+
+        .seal-msg .emoji {
+            font-size: 20pt;
+        }
+
+        .seal-msg p {
+            font-size: 8pt;
+            color: var(--navy);
+            font-weight: 600;
+            margin-top: 1mm;
+        }
+
+        .seal-msg small {
+            font-size: 7pt;
+            color: var(--orange);
+            font-style: italic;
+        }
+
+        /* ESCALAS */
+        .sc-tbl {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 6mm;
+            font-size: 8.5pt;
+        }
+
+        .sc-tbl caption {
+            text-align: left;
+            font-weight: 800;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--navy);
+            margin-bottom: 2mm;
+            padding-bottom: 2mm;
+            border-bottom: 2px solid var(--fire);
+        }
+
+        .sc-tbl th {
+            background: var(--navy);
+            color: white;
+            padding: 2.5mm;
+            text-align: center;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sc-tbl td {
+            border: 1px solid #ddd;
+            padding: 2.5mm;
+            height: 9mm;
+            text-align: center;
+            font-size: 7.5pt;
+        }
+
+        .pg-ft {
+            position: absolute;
+            bottom: 6mm;
+            left: 12mm;
+            right: 12mm;
+            text-align: center;
+            font-size: 5.5pt;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CAPA -->
+    <div class="page cover">
+        <div class="cover-badge"><span class="icon">⚔️</span></div>
+        <h1>Discípulo Radical</h1>
+        <h2>Acampamento 2026</h2>
+        <p class="church">Igreja Batista Filadélfia Internacional de Corrente</p>
+        <div style="font-size:10pt;color:rgba(255,255,255,.6);margin-bottom:10mm;font-style:italic;">"Caderno do
+            Acampante"</div>
+        <div class="owner-box">
+            <label>Nome do Acampante</label>
+            <div class="line"></div>
+            <label>Líder de Célula</label>
+            <div class="line"></div>
+        </div>
+        <span class="year">CARNAVAL 2026</span>
+    </div>
+
+    <!-- PASSAPORTE -->
+    <div class="page passport">
+        <div class="passport-top">
+            <div class="emblem">🛡️</div>
+            <h2>Passaporte do Embaixador do Reino</h2>
+            <p>Líder Radical — Missão Discípulo 2026</p>
+        </div>
+        <div class="passport-fields">
+            <div class="f full"><label>Nome Completo</label>
+                <div class="ln"></div>
+            </div>
+            <div class="f"><label>Data de Nascimento</label>
+                <div class="ln"></div>
+            </div>
+            <div class="f"><label>Discipulador(a)</label>
+                <div class="ln"></div>
+            </div>
+        </div>
+        <p class="stamps-title">🏅 Selos da Jornada Radical</p>
+        <div class="stamps-grid">
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">🏴 Renúncia</span><span
+                    class="stamp-day">Sermão 1</span>
+            </div>
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">🧠 Renovação</span><span
+                    class="stamp-day">Sermão 2</span>
+            </div>
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">❤️ Identidade</span><span
+                    class="stamp-day">Sermão 3</span>
+            </div>
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">🤝 Comunhão</span><span
+                    class="stamp-day">Sermão 4</span>
+            </div>
+        </div>
+        <div class="stamps-grid"
+            style="margin-top:4mm;grid-template-columns:repeat(3,1fr);max-width:75%;margin-left:auto;margin-right:auto;">
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">👑 Honra</span><span
+                    class="stamp-day">Sermão 5</span>
+            </div>
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">🛠️ Serviço</span><span
+                    class="stamp-day">Sermão 6</span>
+            </div>
+            <div class="stamp-slot">
+                <div class="stamp-circle">COLE<br>AQUI</div><span class="stamp-label">⚔️ Envio</span><span
+                    class="stamp-day">Sermão 7</span>
+            </div>
+        </div>
+        <div class="passport-footer">Igreja Batista Filadélfia Internacional de Corrente — Acampamento Discípulo Radical
+            2026</div>
+    </div>
+
+    <!-- REGRAS -->
+    <div class="page">
+        <div class="page-hdr"><span class="tag">📋 Leia com Atenção</span>
+            <h2>Regras e Boas Práticas</h2>
+        </div>
+        <p class="rules-sec">🤝 Convivência</p>
+        <ol class="rules">
+            <li>Respeite todos os horários da programação. Pontualidade é honra.</li>
+            <li>Cuide dos seus pertences e do espaço coletivo como se fossem seus.</li>
+            <li>Mantenha o quarto/barraca organizado durante todo o acampamento.</li>
+            <li>Desligue o celular nos momentos de culto e devocional. Esteja presente.</li>
+            <li>Trate todos com respeito — somos um corpo.</li>
+            <li>Não saia da área do acampamento sem autorização de um líder.</li>
+            <li>Namoro: compostura e respeito. Nada de isolamento a dois.</li>
+        </ol>
+        <p class="rules-sec">🔒 Segurança</p>
+        <ol class="rules" style="counter-reset:r 7;">
+            <li>Banhos e atividades aquáticas somente com supervisão.</li>
+            <li>Problemas de saúde: informe imediatamente um líder.</li>
+            <li>Proibido substâncias ilícitas, bebida alcoólica ou cigarro.</li>
+            <li>Bullying será tratado com seriedade. Denuncie.</li>
+        </ol>
+        <p class="rules-sec">🙏 Propósito</p>
+        <ol class="rules" style="counter-reset:r 11;">
+            <li>Participe de TODAS as atividades — cada momento foi planejado para você.</li>
+            <li>Cuide das escalas de serviço com excelência — servir é adorar.</li>
+            <li>Ore pelos pregadores, músicos e líderes.</li>
+            <li>Escreva o que Deus falar. Use este caderno. Registre tudo.</li>
+        </ol>
+        <div
+            style="background:var(--navy);color:white;padding:5mm;margin-top:6mm;text-align:center;font-style:italic;font-size:9pt;line-height:1.5;border-radius:4px;">
+            "Vocês não estão aqui por acaso. Deus trouxe vocês pra este lugar, neste momento, com um propósito: FORJAR
+            discípulos radicais."
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- PROGRAMAÇÃO -->
+    <div class="page">
+        <div class="page-hdr"><span class="tag">🗓️ Sua Jornada</span>
+            <h2>Programação do Acampamento</h2>
+        </div>
+
+        <div class="sched-card">
+            <h3>🏕️ Sábado — Chegada & Abertura</h3>
+            <table>
+                <tr>
+                    <td class="tm">13:00</td>
+                    <td class="hl">🚌 Saída da Igreja</td>
+                </tr>
+                <tr>
+                    <td class="tm">15:00–16:30</td>
+                    <td>Organização e Instalação</td>
+                </tr>
+                <tr>
+                    <td class="tm">19:00–20:20</td>
+                    <td class="hl">🔥 Culto de Abertura — Sermão 1</td>
+                </tr>
+                <tr>
+                    <td class="tm">20:30</td>
+                    <td>🍽️ Jantar</td>
+                </tr>
+                <tr>
+                    <td class="tm">21:30</td>
+                    <td>Livre</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sched-card">
+            <h3>☀️ Domingo — Mergulho Profundo</h3>
+            <table>
+                <tr>
+                    <td class="tm">07:00</td>
+                    <td>Despertar</td>
+                </tr>
+                <tr>
+                    <td class="tm">07:30</td>
+                    <td>📖 Devocional</td>
+                </tr>
+                <tr>
+                    <td class="tm">07:45</td>
+                    <td>☕ Café da Manhã</td>
+                </tr>
+                <tr>
+                    <td class="tm">08:30–09:40</td>
+                    <td class="hl">⛪ Culto — BATISMO — Sermão 2</td>
+                </tr>
+                <tr>
+                    <td class="tm">10:00–12:15</td>
+                    <td>🌿 Atividades ao Ar Livre</td>
+                </tr>
+                <tr>
+                    <td class="tm">12:30</td>
+                    <td>🍽️ Almoço</td>
+                </tr>
+                <tr>
+                    <td class="tm">13:00</td>
+                    <td>Livre</td>
+                </tr>
+                <tr>
+                    <td class="tm">15:00–16:30</td>
+                    <td>🏆 Gincana</td>
+                </tr>
+                <tr>
+                    <td class="tm">19:00–20:20</td>
+                    <td class="hl">🔥 Culto — Sermão 3</td>
+                </tr>
+                <tr>
+                    <td class="tm">20:30</td>
+                    <td>🍽️ Jantar</td>
+                </tr>
+                <tr>
+                    <td class="tm">21:30</td>
+                    <td class="hl">🎶 LUAU</td>
+                </tr>
+                <tr>
+                    <td class="tm">23:00</td>
+                    <td>💤 Apagar Luzes</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sched-card">
+            <h3>💪 Segunda — Formação & Comunidade</h3>
+            <table>
+                <tr>
+                    <td class="tm">07:00</td>
+                    <td>Despertar</td>
+                </tr>
+                <tr>
+                    <td class="tm">07:30</td>
+                    <td>📖 Devocional</td>
+                </tr>
+                <tr>
+                    <td class="tm">07:45</td>
+                    <td>☕ Café da Manhã</td>
+                </tr>
+                <tr>
+                    <td class="tm">08:30–09:40</td>
+                    <td class="hl">⛪ Culto — Sermão 4</td>
+                </tr>
+                <tr>
+                    <td class="tm">10:00–12:15</td>
+                    <td>🌿 Atividades ao Ar Livre</td>
+                </tr>
+                <tr>
+                    <td class="tm">12:30</td>
+                    <td>🍽️ Almoço</td>
+                </tr>
+                <tr>
+                    <td class="tm">13:00</td>
+                    <td>Livre</td>
+                </tr>
+                <tr>
+                    <td class="tm">15:00–16:30</td>
+                    <td>🏆 Gincana</td>
+                </tr>
+                <tr>
+                    <td class="tm">19:00–20:20</td>
+                    <td class="hl">🔥 Culto — Sermão 5</td>
+                </tr>
+                <tr>
+                    <td class="tm">20:30</td>
+                    <td>🍽️ Jantar</td>
+                </tr>
+                <tr>
+                    <td class="tm">21:30</td>
+                    <td class="hl">🎬 CINEMA</td>
+                </tr>
+                <tr>
+                    <td class="tm">23:00</td>
+                    <td>💤 Apagar Luzes</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sched-card">
+            <h3>🚀 Terça — Envio & Comissionamento</h3>
+            <table>
+                <tr>
+                    <td class="tm">07:00</td>
+                    <td>Despertar</td>
+                </tr>
+                <tr>
+                    <td class="tm">07:30</td>
+                    <td>📖 Devocional</td>
+                </tr>
+                <tr>
+                    <td class="tm">07:45</td>
+                    <td>☕ Café da Manhã</td>
+                </tr>
+                <tr>
+                    <td class="tm">08:30–09:40</td>
+                    <td class="hl">⛪ Culto — Sermão 6</td>
+                </tr>
+                <tr>
+                    <td class="tm">10:00–12:15</td>
+                    <td>🌿 Atividades ao Ar Livre</td>
+                </tr>
+                <tr>
+                    <td class="tm">12:30</td>
+                    <td class="hl">🥩 Almoço — CHURRASCO</td>
+                </tr>
+                <tr>
+                    <td class="tm">13:00</td>
+                    <td>Livre</td>
+                </tr>
+                <tr>
+                    <td class="tm">15:00–16:30</td>
+                    <td>🏆 Gincana</td>
+                </tr>
+                <tr>
+                    <td class="tm">19:00–20:20</td>
+                    <td class="hl">🔥 Culto Final — Sermão 7</td>
+                </tr>
+                <tr>
+                    <td class="tm">20:30</td>
+                    <td>🍽️ Jantar</td>
+                </tr>
+                <tr>
+                    <td class="tm">21:30</td>
+                    <td class="hl">📰 Jornal e Luau</td>
+                </tr>
+                <tr>
+                    <td class="tm">23:00</td>
+                    <td>Encerramento</td>
+                </tr>
+                <tr>
+                    <td class="tm">00:00</td>
+                    <td>💤 Apagar Luzes</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="font-size:7pt;color:#aaa;text-align:center;margin-top:1mm;">⬛ Quarta: Despertar → Devocional → Café
+            → Volta para Casa 🏠</div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 1 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 01</span>
+            <h2 class="sermon-ttl">O Custo do Discipulado</h2>
+            <p class="sermon-sub">"A Cruz não é um Acessório"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Sábado à Noite</span><span><strong>Selo:</strong> 🏴
+                Renúncia</span></div>
+        <div class="verse-box">"Se alguém quiser acompanhar-me, negue-se a si mesmo, tome diariamente a sua cruz e
+            siga-me."<cite>— Lucas 9:23</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. Qual a diferença entre ser "fã" de Jesus e ser "discípulo" de Jesus?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. O que significa "graça barata" e "graça preciosa"? Em qual você tem vivido?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Quais são os 3 passos de Lucas 9:23 e o que cada um significa?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. O que precisa "morrer" na sua vida para que o fruto de Deus nasça? (Jo 12:24)</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">🏴</span>
+            <p>Peça à coordenação o <strong>Selo da Renúncia</strong> para atualizar seu passaporte!</p><small>Sermão 1
+                — Sábado à Noite</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 2 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 02</span>
+            <h2 class="sermon-ttl">Metanoia</h2>
+            <p class="sermon-sub">"A Mente de Escravo vs. A Mente de Filho"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Domingo Manhã</span><span><strong>Selo:</strong> 🧠
+                Renovação</span></div>
+        <div class="verse-box">"Não se amoldem ao padrão deste mundo, mas transformem-se pela renovação da sua
+            mente."<cite>— Romanos 12:2</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. O que significa "Metanoia"? Como vai além do arrependimento?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. Qual a diferença entre "conformar" e "transformar" (metamorfose)?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Cite 2 pensamentos de "mente de escravo" que você precisa trocar por "mente de filho".</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. Que mentira sobre você precisa ser substituída pela verdade bíblica?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">🧠</span>
+            <p>Peça à coordenação o <strong>Selo da Renovação</strong> para atualizar seu passaporte!</p><small>Sermão 2
+                — Domingo Manhã</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 3 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 03</span>
+            <h2 class="sermon-ttl">Identidade e Paternidade</h2>
+            <p class="sermon-sub">"Quem é Você Quando Ninguém Está Olhando?"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Domingo à Noite</span><span><strong>Selo:</strong> ❤️
+                Identidade</span></div>
+        <div class="verse-box">"Vocês não receberam um espírito que os escravize para viverem no medo, mas receberam o
+            Espírito que os adota como filhos: 'Aba, Pai'."<cite>— Romanos 8:15</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. No batismo de Jesus (Mt 3:17), o Pai declarou 3 coisas. Quais são?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. O que significa "Abba, Pai"? Por que é tão poderoso?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Diferenças entre "coração de órfão" e "coração de filho"?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. Deus gravou você nas palmas das mãos Dele (Is 49:16). Como isso muda a forma como você se vê?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">❤️</span>
+            <p>Peça à coordenação o <strong>Selo da Identidade</strong> para atualizar seu passaporte!</p><small>Sermão
+                3 — Domingo à Noite</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 4 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 04</span>
+            <h2 class="sermon-ttl">O Poder da Associação</h2>
+            <p class="sermon-sub">"Ninguém Cresce Sozinho"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Segunda Manhã</span><span><strong>Selo:</strong> 🤝
+                Comunhão</span></div>
+        <div class="verse-box">"É melhor ter companhia do que estar sozinho. Um cordão de três dobras não se rompe com
+            facilidade."<cite>— Eclesiastes 4:9,12</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. Quais os 4 benefícios de caminhar acompanhado segundo Eclesiastes 4?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. O que significa "ferro afia ferro" (Pv 27:17)?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Por que Jesus escolheu 12 discípulos mesmo podendo fazer tudo sozinho?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. Você tem caminhado sozinho ou em comunidade? O que precisa mudar?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">🤝</span>
+            <p>Peça à coordenação o <strong>Selo da Comunhão</strong> para atualizar seu passaporte!</p><small>Sermão 4
+                — Segunda Manhã</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 5 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 05</span>
+            <h2 class="sermon-ttl">Cultura de Honra</h2>
+            <p class="sermon-sub">"O Segredo da Autoridade"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Segunda à Noite</span><span><strong>Selo:</strong> 👑
+                Honra</span></div>
+        <div class="verse-box">"Quem recebe vocês, recebe a mim; e quem me recebe, recebe aquele que me enviou."<cite>—
+                Mateus 10:40</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. Honra NÃO é bajulação nem submissão cega. O que é honra de verdade?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. Por que Davi não matou Saul na caverna? O que isso ensina?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Segundo Mt 13:57-58, o que a desonra pode "bloquear"?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. Quais os 4 passos para "discordar com honra"?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">👑</span>
+            <p>Peça à coordenação o <strong>Selo da Honra</strong> para atualizar seu passaporte!</p><small>Sermão 5 —
+                Segunda à Noite</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 6 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 06</span>
+            <h2 class="sermon-ttl">Mãos à Obra</h2>
+            <p class="sermon-sub">"O Voluntariado como Adoração"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Terça Manhã</span><span><strong>Selo:</strong> 🛠️
+                Serviço</span></div>
+        <div class="verse-box">"Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os
+            homens."<cite>— Colossenses 3:23</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. O que Neemias 3 ensina sobre trabalho em equipe? O que é "cada um diante da sua casa"?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. Por que Deus não precisa de especialistas, mas de disponíveis?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Como o serviço (lavar louça, arrumar cadeiras) pode ser adoração?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. Dos 5 perfis (Profeta, Servo, Pastor, Mestre, Evangelista), qual é o seu?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">🛠️</span>
+            <p>Peça à coordenação o <strong>Selo do Serviço</strong> para atualizar seu passaporte!</p><small>Sermão 6 —
+                Terça Manhã</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- SERMÃO 7 -->
+    <div class="page sermon-page">
+        <div class="sermon-hdr"><span class="sermon-num">Sermão 07</span>
+            <h2 class="sermon-ttl">A Grande Comissão</h2>
+            <p class="sermon-sub">"Ir e Fazer Discípulos — Volte a Sonhar"</p>
+        </div>
+        <div class="sermon-meta"><span><strong>Quando:</strong> Terça à Noite —
+                Encerramento</span><span><strong>Selo:</strong> ⚔️ Envio</span></div>
+        <div class="verse-box">"Portanto, vão e façam discípulos de todas as nações, batizando-os em nome do Pai e do
+            Filho e do Espírito Santo."<cite>— Mateus 28:19-20</cite></div>
+        <div class="q-section">
+            <h3>📝 Perguntas de Fixação</h3>
+            <div class="q-item">
+                <p>1. Qual é o único verbo no imperativo em Mateus 28:19? O que isso muda?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>2. Quantas gerações espirituais aparecem em 2 Timóteo 2:2? Quais são?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>3. Qual a diferença entre ADIÇÃO e MULTIPLICAÇÃO no discipulado?</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+            <div class="q-item">
+                <p>4. Escreva 3 nomes de pessoas que você vai orar e discipular nos próximos 12 meses:</p>
+                <div class="a-lines">
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                    <div class="ln"></div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-sec">
+            <h3>✏️ Minhas Anotações</h3>
+            <div class="notes-area"></div>
+        </div>
+        <div class="seal-msg"><span class="emoji">⚔️</span>
+            <p>Peça à coordenação o <strong>Selo do Envio</strong> para atualizar seu passaporte!</p><small>Sermão 7 —
+                Terça à Noite</small>
+        </div>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- ESCALAS -->
+    <div class="page">
+        <div class="page-hdr"><span class="tag">🛠️ Preencha com seu Líder</span>
+            <h2>Escalas de Serviço</h2>
+        </div>
+        <table class="sc-tbl">
+            <caption>🚿 Limpeza dos Banheiros</caption>
+            <thead>
+                <tr>
+                    <th>Turno</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Manhã</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Tarde</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Noite</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="sc-tbl">
+            <caption>🍽️ Lavar Louça</caption>
+            <thead>
+                <tr>
+                    <th>Refeição</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Café</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Almoço</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Jantar</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="sc-tbl">
+            <caption>🗑️ Limpeza do Lixo</caption>
+            <thead>
+                <tr>
+                    <th>Turno</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Manhã</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Noite</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="sc-tbl">
+            <caption>⛪ Limpeza do Altar</caption>
+            <thead>
+                <tr>
+                    <th>Culto</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Manhã</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Noite</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pg-ft">Discípulo Radical 2026</div>
+    </div>
+
+    <!-- CONTRACAPA -->
+    <div class="page cover" style="justify-content:flex-end;padding-bottom:40mm;">
+        <div class="verse-box"
+            style="background:rgba(255,255,255,.05);border-left-color:var(--gold);color:rgba(255,255,255,.85);max-width:80%;margin:0 auto 20mm;">
+            "Portanto, vão e façam discípulos de todas as nações. E eu estarei sempre com vocês, até o fim dos tempos."
+            <cite style="color:var(--gold);">— Mateus 28:19-20</cite>
+        </div>
+        <p style="color:rgba(255,255,255,.4);font-size:8pt;letter-spacing:4px;text-transform:uppercase;">Igreja Batista
+            Filadélfia Internacional de Corrente</p>
+        <p style="color:rgba(255,255,255,.25);font-size:7pt;letter-spacing:2px;margin-top:3mm;">"A Cruz não é um
+            acessório. É um chamado."</p>
+    </div>
+
+</body>
+
+</html>

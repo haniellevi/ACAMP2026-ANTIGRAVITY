@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c5ce7"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00cec9"/>
+      <stop offset="100%" style="stop-color:#4ade80"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="40%">
+      <stop offset="0%" style="stop-color:rgba(108,92,231,0.25)"/>
+      <stop offset="100%" style="stop-color:rgba(108,92,231,0)"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0e17"/>
+  
+  <!-- Background glow -->
+  <ellipse cx="600" cy="260" rx="350" ry="250" fill="url(#glow)"/>
+  
+  <!-- Logo icon -->
+  <g transform="translate(510, 80) scale(0.9)">
+    <!-- Outer ring -->
+    <circle cx="100" cy="100" r="85" fill="none" stroke="url(#grad1)" stroke-width="3" opacity="0.5"/>
+    <!-- Inner circle -->
+    <circle cx="100" cy="100" r="65" fill="rgba(108,92,231,0.1)" stroke="url(#grad1)" stroke-width="2"/>
+    <!-- Cross vertical -->
+    <rect x="93" y="50" width="14" height="100" rx="7" fill="url(#grad1)"/>
+    <!-- Cross horizontal -->
+    <rect x="67" y="76" width="66" height="14" rx="7" fill="url(#grad1)"/>
+    <!-- Flame -->
+    <path d="M100 38 Q112 54 100 62 Q88 54 100 38Z" fill="url(#grad2)" opacity="0.9"/>
+    <!-- Growth dots -->
+    <circle cx="80" cy="142" r="5" fill="#4ade80" opacity="0.7"/>
+    <circle cx="100" cy="150" r="4" fill="#22c55e" opacity="0.5"/>
+    <circle cx="120" cy="142" r="5" fill="#4ade80" opacity="0.7"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="340" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="900" fill="url(#grad1)" text-anchor="middle" letter-spacing="3">PERFIL DO DISCÍPULO</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="390" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#8892a8" text-anchor="middle" font-weight="500">Diagnóstico de Maturidade Espiritual</text>
+  
+  <!-- Badge -->
+  <rect x="460" y="420" width="280" height="40" rx="20" fill="rgba(26,34,53,0.8)" stroke="#252d42" stroke-width="1"/>
+  <text x="600" y="446" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#00cec9" text-anchor="middle" font-weight="600" letter-spacing="1">⛺ ACAMPAMENTO 2026</text>
+  
+  <!-- Decorative line -->
+  <rect x="450" y="490" width="300" height="2" rx="1" fill="url(#grad1)" opacity="0.3"/>
+  
+  <!-- Bottom text -->
+  <text x="600" y="530" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#8892a8" text-anchor="middle" opacity="0.6">25 perguntas • 5 categorias • resultado instantâneo</text>
+</svg>
