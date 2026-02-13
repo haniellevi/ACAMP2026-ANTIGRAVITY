@@ -571,7 +571,7 @@
 
         <div onclick="openAdminDiscrete()"
             style="position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 2px; cursor: pointer;">
-            MINISTÉRIO DE JOVENS • 2026
+            ADMIN • 2026
         </div>
     </div>
 
@@ -912,7 +912,7 @@
         </section>
 
         <!-- BOTTOM NAV ATUALIZADA -->
-        <nav class="bottom-nav">
+        <nav class="bottom-nav hidden" id="bottom-nav-main">
             <div class="nav-item active" id="nav-home" onclick="nav('home')">
                 <span class="nav-icon">🏠</span>
                 BASE
@@ -1202,10 +1202,15 @@
         }
 
         async function apiRequest(action, payloadObj = {}) {
-            // Empacota tudo numa request GET com payload stringified (para JSONP GET funcionar no backend)
-            // No backend, verificar se action vem como parameter e payload tbm
-            const payload = encodeURIComponent(JSON.stringify({ ...payloadObj, action }));
-            return await jsonp(`${API_URL}?action=${action}&payload=${payload}`);
+            console.log('API Request:', action, payloadObj);
+            const postActions = ['register', 'login', 'validateSeal', 'adminLogin', 'addAdmin', 'adminRegisterCamper', 'adminApplySeal', 'generateScales', 'updateScale', 'generateVouchers', 'validateVoucher', 'saveSermonAnswers'];
+
+            if (postActions.includes(action)) {
+                const payload = encodeURIComponent(JSON.stringify({ ...payloadObj, action }));
+                return await jsonp(`${API_URL}?action=post&payload=${payload}`);
+            } else {
+                return await jsonp(`${API_URL}?action=${action}`);
+            }
         }
 
         // ========== INICIALIZAÇÃO ==========
@@ -1348,8 +1353,20 @@
 
         // ========== APP CORE ==========
         function nav(view) {
+            console.log('Navigating to:', view);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
             document.getElementById('view-' + view).classList.add('active');
+
+            // Controle da Bottom Nav
+            const bNav = document.getElementById('bottom-nav-main');
+            const mainAppVisible = document.getElementById('main-app').style.display !== 'none';
+            const mainTabs = ['home', 'eudeus', 'schedfull', 'passport', 'notebook', 'rules'];
+
+            if (mainAppVisible && mainTabs.includes(view)) {
+                bNav.classList.remove('hidden');
+            } else {
+                bNav.classList.add('hidden');
+            }
 
             document.querySelectorAll('.bottom-nav .nav-item').forEach(i => i.classList.remove('active'));
             const b = document.getElementById('nav-' + view);
