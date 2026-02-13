@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Ministerial — Descubra Seu Perfil</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Descubra seu perfil ministerial com base nos 5 ministérios de Efésios 4:11. Apóstolo, Profeta, Evangelista, Pastor ou Mestre? 25 perguntas, resultado instantâneo.">
+    <meta name="author" content="Igreja Filadelfia Corrente">
+    <meta name="theme-color" content="#f97316">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diagnóstico Ministerial — Descubra Seu Perfil">
+    <meta property="og:description"
+        content="🛠️ Descubra qual dos 5 ministérios de Efésios 4:11 mais combina com você. 25 perguntas, resultado instantâneo. ⛺ Acampamento 2026">
+    <meta property="og:image" content="https://haniellevi.github.io/ACAMP2026-ANTIGRAVITY/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://haniellevi.github.io/ACAMP2026-ANTIGRAVITY/diagnostico-ministerial.html">
+    <meta property="og:site_name" content="Acampamento 2026">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Diagnóstico Ministerial — Descubra Seu Perfil">
+    <meta name="twitter:description"
+        content="🛠️ Descubra qual dos 5 ministérios de Efésios 4:11 mais combina com você. ⛺ Acampamento 2026">
+    <meta name="twitter:image" content="https://haniellevi.github.io/ACAMP2026-ANTIGRAVITY/og-image.png">
+
+    <!-- Favicon SVG inline -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f97316'/%3E%3Cstop offset='100%25' style='stop-color:%23ef4444'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' rx='40' fill='%230a0e17'/%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='url(%23g)' stroke-width='2.5' opacity='.4'/%3E%3Ctext x='100' y='120' text-anchor='middle' font-size='80' fill='url(%23g)'%3E🛠️%3C/text%3E%3C/svg%3E">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0a0e17;
+            --surface: #131926;
+            --surface2: #1a2235;
+            --border: #252d42;
+            --primary: #f97316;
+            --primary-g: linear-gradient(135deg, #f97316, #ef4444);
+            --accent: #fbbf24;
+            --gold: #ffd700;
+            --text: #e2e8f0;
+            --muted: #8892a8;
+            --apostolo: linear-gradient(135deg, #ef4444, #dc2626);
+            --profeta: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            --evangelista: linear-gradient(135deg, #22c55e, #16a34a);
+            --pastor: linear-gradient(135deg, #3b82f6, #2563eb);
+            --mestre: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(249, 115, 22, .15), transparent 70%);
+            pointer-events: none
+        }
+
+        .hero h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            background: var(--primary-g);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1em;
+            max-width: 500px;
+            margin: 0 auto
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 18px;
+            border-radius: 20px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            font-size: .8em;
+            color: var(--accent);
+            font-weight: 600
+        }
+
+        .verse-box {
+            max-width: 500px;
+            margin: 20px auto 0;
+            padding: 14px 20px;
+            background: var(--surface);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+            font-size: .85em;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .verse-box strong {
+            color: var(--accent);
+        }
+
+        /* PROGRESS */
+        .progress-bar {
+            margin: 30px 0 20px;
+            background: var(--surface);
+            border-radius: 12px;
+            height: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border)
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-g);
+            border-radius: 12px;
+            transition: width .5s cubic-bezier(.4, 0, .2, 1);
+            width: 0
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: .85em;
+            color: var(--muted);
+            margin-bottom: 24px
+        }
+
+        /* STEP INDICATORS */
+        .step-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0 10px;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--surface2);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .step-dot.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .step-dot.completed {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .step-label {
+            text-align: center;
+            font-size: .8em;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        /* PAGE CONTAINER */
+        .quiz-page {
+            display: none;
+            animation: fadeSlide .4s ease;
+        }
+
+        .quiz-page.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* PAGINATION NAV */
+        .pagination-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-nav {
+            padding: 14px 28px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            background: transparent;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: .9em;
+            cursor: pointer;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-nav:disabled {
+            opacity: .3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-nav:disabled:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn-nav.primary {
+            background: var(--primary-g);
+            border: none;
+            color: #fff;
+        }
+
+        .btn-nav.primary:hover {
+            box-shadow: 0 8px 25px rgba(249, 115, 22, .3);
+        }
+
+        .page-counter {
+            font-size: .85em;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .cat-answered {
+            font-size: .78em;
+            color: var(--accent);
+            font-weight: 600;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* CATEGORY */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 10px 0 16px;
+            padding: 14px 20px;
+            background: var(--surface);
+            border-radius: 14px;
+            border: 1px solid var(--border)
+        }
+
+        .cat-icon {
+            font-size: 1.6em
+        }
+
+        .cat-info h2 {
+            font-size: 1.05em;
+            font-weight: 700;
+            margin-bottom: 2px
+        }
+
+        .cat-info span {
+            font-size: .78em;
+            color: var(--muted)
+        }
+
+        /* QUESTION */
+        .question {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 14px;
+            transition: border-color .3s, box-shadow .3s
+        }
+
+        .question.answered {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(249, 115, 22, .08)
+        }
+
+        .question .q-num {
+            font-size: .72em;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px
+        }
+
+        .question .q-text {
+            font-size: .95em;
+            font-weight: 600;
+            margin-bottom: 14px;
+            line-height: 1.5
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all .25s;
+            background: var(--surface2)
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            transform: translateX(4px)
+        }
+
+        .option.selected {
+            background: rgba(249, 115, 22, .12);
+            border-color: var(--primary);
+            box-shadow: 0 0 12px rgba(249, 115, 22, .1)
+        }
+
+        .option .radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .25s
+        }
+
+        .option.selected .radio {
+            border-color: var(--primary);
+            background: var(--primary)
+        }
+
+        .option.selected .radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff
+        }
+
+        .option .label {
+            font-size: .88em;
+            color: var(--muted);
+            transition: color .25s
+        }
+
+        .option.selected .label {
+            color: var(--text);
+            font-weight: 500
+        }
+
+        /* BUTTON */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 14px;
+            background: var(--primary-g);
+            color: #fff;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform .2s, box-shadow .2s;
+            text-transform: uppercase;
+            letter-spacing: 1px
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(249, 115, 22, .3)
+        }
+
+        .btn-submit:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none
+        }
+
+        /* RESULT */
+        .result {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeUp .6s ease
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .result-icon {
+            font-size: 4em;
+            margin-bottom: 16px
+        }
+
+        .result-title {
+            font-size: 1.8em;
+            font-weight: 900;
+            margin-bottom: 4px
+        }
+
+        .result-subtitle {
+            font-size: 1em;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .result-profile {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            padding: 8px 24px;
+            border-radius: 30px;
+            display: inline-block
+        }
+
+        .result-desc {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 16px auto 20px;
+            line-height: 1.7;
+            font-size: .95em;
+            text-align: left;
+        }
+
+        .result-verse {
+            max-width: 520px;
+            margin: 0 auto 30px;
+            padding: 14px 20px;
+            background: var(--surface);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+            font-size: .85em;
+            line-height: 1.6;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .result-traits {
+            max-width: 520px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+
+        .result-traits h4 {
+            font-size: .9em;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .trait-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .trait-tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            font-size: .8em;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* CATEGORY SCORES */
+        .cat-scores {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0 30px
+        }
+
+        .cat-score-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 20px
+        }
+
+        .cat-score-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px
+        }
+
+        .cat-score-name {
+            font-size: .88em;
+            font-weight: 600
+        }
+
+        .cat-score-val {
+            font-size: .85em;
+            font-weight: 700;
+            color: var(--primary)
+        }
+
+        .cat-score-bar {
+            height: 6px;
+            background: var(--surface2);
+            border-radius: 6px;
+            overflow: hidden
+        }
+
+        .cat-score-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease
+        }
+
+        .btn-retry {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            background: transparent;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: .95em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all .2s
+        }
+
+        .btn-retry:hover {
+            background: var(--primary);
+            color: #fff
+        }
+
+        .btn-print {
+            display: inline-block;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 12px;
+            background: var(--surface2);
+            color: var(--text);
+            font-weight: 700;
+            font-size: .95em;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: all .2s;
+        }
+
+        .btn-print:hover {
+            background: var(--border);
+        }
+
+        @media(max-width:600px) {
+            .hero h1 {
+                font-size: 1.6em
+            }
+
+            .container {
+                padding: 12px
+            }
+
+            .question {
+                padding: 16px
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            @page {
+                margin: 20mm;
+                size: auto;
+            }
+
+            body {
+                background: #fff;
+                color: #000;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+
+            .hero,
+            #quiz-section,
+            .btn-retry,
+            .btn-print,
+            #syncStatus,
+            .badge {
+                display: none !important;
+            }
+
+            .result {
+                display: block !important;
+                padding: 0;
+                animation: none;
+            }
+
+            .result-profile {
+                background: #f0f0f0 !important;
+                color: #333 !important;
+                border: 1px solid #ccc;
+                box-shadow: none;
+            }
+
+            .cat-score-item {
+                break-inside: avoid;
+                border: 1px solid #eee;
+                page-break-inside: avoid;
+            }
+
+            .cat-score-fill {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .print-header {
+                display: block !important;
+                margin-bottom: 30px;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10px;
+            }
+
+            .print-header h1 {
+                font-size: 24px;
+                margin: 0;
+                color: #000;
+                text-transform: uppercase;
+            }
+
+            .print-header p {
+                margin: 5px 0 0;
+                font-size: 14px;
+                color: #555;
+            }
+
+            .print-info {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 15px;
+                font-size: 14px;
+            }
+        }
+
+        .print-header {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>DIAGNÓSTICO MINISTERIAL</h1>
+            <p>Descubra qual dos 5 ministérios de Efésios 4:11 mais combina com o seu chamado.</p>
+
+            <div class="verse-box">
+                <strong>Efésios 4:11-12</strong> — "E ele mesmo concedeu uns para apóstolos, outros para profetas,
+                outros para evangelistas e outros para pastores e mestres, com vistas ao aperfeiçoamento dos santos para
+                o desempenho do seu serviço, para a edificação do corpo de Cristo."
+            </div>
+
+            <!-- USER FORM -->
+            <div
+                style="max-width:400px;margin:20px auto;text-align:left;background:var(--surface);padding:20px;border-radius:12px;border:1px solid var(--border)">
+                <div style="margin-bottom:12px">
+                    <label style="display:block;font-size:0.85em;color:var(--muted);margin-bottom:6px">Seu Nome
+                        Completo</label>
+                    <input type="text" id="userName" placeholder="Ex: João da Silva"
+                        style="width:100%;padding:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;outline:none">
+                </div>
+
+                <div style="margin-bottom:12px">
+                    <label style="display:block;font-size:0.85em;color:var(--muted);margin-bottom:6px">Sua
+                        Igreja</label>
+                    <select id="userChurch" onchange="toggleOtherChurch()"
+                        style="width:100%;padding:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;outline:none">
+                        <option value="IGREJA FILADELFIA CORRENTE">IGREJA FILADELFIA CORRENTE</option>
+                        <option value="OUTRA">OUTRA (Digitar nome)</option>
+                    </select>
+                </div>
+
+                <div id="otherChurchDiv" style="display:none;margin-bottom:12px">
+                    <label style="display:block;font-size:0.85em;color:var(--muted);margin-bottom:6px">Nome da
+                        Igreja</label>
+                    <input type="text" id="otherChurchName" placeholder="Digite o nome da sua igreja"
+                        style="width:100%;padding:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;outline:none">
+                </div>
+
+                <button class="btn-submit" onclick="startQuiz()"
+                    style="margin-top:10px;padding:12px;font-size:0.95em">INICIAR
+                    DIAGNÓSTICO</button>
+                <div class="badge" style="display:block;text-align:center;margin-top:10px;background:none;border:none">⏱
+                    ~5
+                    minutos • 25 perguntas</div>
+            </div>
+        </div>
+
+        <div id="quiz-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0 de 25 respondidas</div>
+            <div class="step-indicators" id="stepIndicators"></div>
+            <div class="step-label" id="stepLabel"></div>
+            <div id="questions"></div>
+        </div>
+
+        <div class="result" id="resultSection">
+            <!-- PRINT ONLY HEADER -->
+            <div class="print-header">
+                <h1>Diagnóstico Ministerial</h1>
+                <p>Perfil dos 5 Ministérios • Acampamento 2026</p>
+                <div class="print-info">
+                    <div><strong id="printName">Nome:</strong> </div>
+                    <div><strong id="printChurch">Igreja:</strong> </div>
+                    <div><strong>Data:</strong> <span id="printDate"></span></div>
+                </div>
+            </div>
+
+            <div class="result-icon" id="resIcon"></div>
+            <div class="result-title" id="resTitle"></div>
+            <div class="result-subtitle" id="resSubtitle"></div>
+            <div class="result-profile" id="resProfile"></div>
+            <div class="result-desc" id="resDesc"></div>
+            <div class="result-verse" id="resVerse"></div>
+            <div class="result-traits" id="resTraits"></div>
+            <h3 style="margin-bottom:14px;font-size:1em">Pontuação por Ministério</h3>
+            <div class="cat-scores" id="catScores"></div>
+            <button class="btn-retry" onclick="location.reload()">↻ Refazer</button>
+            <button class="btn-print" onclick="window.print()">📄 Salvar PDF</button>
+        </div>
+    </div>
+
+    <!-- SYNC STATUS INDICATOR -->
+    <div id="syncStatus"
+        style="display:none;position:fixed;bottom:20px;right:20px;background:var(--surface2);padding:12px 20px;border-radius:30px;border:1px solid var(--border);box-shadow:0 10px 30px rgba(0,0,0,0.5);align-items:center;gap:10px;z-index:999">
+        <span id="syncIcon">🔄</span>
+        <span id="syncMsg" style="font-size:0.85em;font-weight:600">Enviando dados...</span>
+    </div>
+
+    <script>
+        // URL do Google Apps Script (mesma planilha pode receber, basta adicionar aba "Ministerial")
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmQJeAuf-7dYByCXk91yrQoeixft88EIW5IAfVgg9y2__Kd0QJ0mi8NLqOn5pLfdOQkQ/exec';
+
+        // --- 5 MINISTÉRIOS (APEST) ---
+        const CATS = [
+            { id: 'apostolo', name: 'Apóstolo', icon: '🚀', color: '#ef4444', greek: 'Apostolos — "Enviado"' },
+            { id: 'profeta', name: 'Profeta', icon: '🔥', color: '#8b5cf6', greek: 'Prophetes — "Aquele que fala diante"' },
+            { id: 'evangelista', name: 'Evangelista', icon: '📢', color: '#22c55e', greek: 'Euangelistes — "Mensageiro de boas novas"' },
+            { id: 'pastor', name: 'Pastor', icon: '🐑', color: '#3b82f6', greek: 'Poimen — "Aquele que apascenta"' },
+            { id: 'mestre', name: 'Mestre', icon: '📖', color: '#f59e0b', greek: 'Didaskalos — "Aquele que ensina"' }
+        ];
+
+        // --- PERFIS DE RESULTADO ---
+        const PROFILES = {
+            apostolo: {
+                icon: '🚀',
+                title: 'APÓSTOLO',
+                subtitle: 'O Pioneiro e Fundador',
+                gradient: 'var(--apostolo)',
+                verse: '"Portanto, vão e façam discípulos de todas as nações." — Mateus 28:19',
+                desc: 'Você tem o perfil apostólico! Apóstolos são os "enviados" — visionários que enxergam o que Deus quer fazer no futuro e trabalham para tornar isso realidade. Você tem o impulso de iniciar coisas novas, expandir fronteiras e estabelecer fundamentos. Como Paulo, você não se contenta com o status quo: quer plantar, inaugurar, abrir caminhos onde ninguém foi antes. Sua grande força é a visão estratégica e a capacidade de mobilizar pessoas para uma missão maior.',
+                traits: ['Visionário', 'Pioneiro', 'Estratégico', 'Fundador', 'Corajoso', 'Empreendedor', 'Mobilizador', 'Adaptável'],
+                heroes: 'Paulo, Barnabé, Silas, Neemias'
+            },
+            profeta: {
+                icon: '🔥',
+                title: 'PROFETA',
+                subtitle: 'A Voz e a Consciência',
+                gradient: 'var(--profeta)',
+                verse: '"Certamente, o Senhor Deus não fará coisa alguma, sem primeiro revelar o seu segredo aos seus servos, os profetas." — Amós 3:7',
+                desc: 'Você tem o perfil profético! Profetas são conectados ao coração de Deus — conseguem discernir o que está errado antes que outros vejam, e sentem compulsão de falar a verdade mesmo quando é desconfortável. Você tem sensibilidade espiritual aguçada, uma paixão ardente pela santidade e pela justiça, e não suporta hipocrisia ou superficialidade. Como Jeremias ou João Batista, sua missão é chamar o povo de volta ao caminho correto. Sua grande força é a clareza moral e a coragem de confrontar.',
+                traits: ['Sensível ao Espírito', 'Corajoso', 'Discernimento', 'Confrontador', 'Intercessor', 'Visionário', 'Zeloso', 'Direto'],
+                heroes: 'Elias, Jeremias, João Batista, Isaías'
+            },
+            evangelista: {
+                icon: '📢',
+                title: 'EVANGELISTA',
+                subtitle: 'O Comunicador e Recrutador',
+                gradient: 'var(--evangelista)',
+                verse: '"Como são belos os pés dos que anunciam boas novas!" — Romanos 10:15',
+                desc: 'Você tem o perfil evangelístico! Evangelistas são apaixonados por pessoas que ainda não conhecem Jesus — você tem uma habilidade natural de comunicar o Evangelho de forma relevante e atraente. Como Filipe no livro de Atos, você sabe adaptar a mensagem ao ouvinte, percebe oportunidades de compartilhar sua fé em qualquer contexto e se entristece quando vê pessoas vivendo sem esperança. Sua grande força é o carisma relacional e a capacidade de tornar Jesus irresistível para quem ainda não O conhece.',
+                traits: ['Comunicador', 'Carismático', 'Apaixonado', 'Persuasivo', 'Relacional', 'Adaptável', 'Entusiasta', 'Ousado'],
+                heroes: 'Filipe, Pedro (Pentecostes), Stephen, Billy Graham'
+            },
+            pastor: {
+                icon: '🐑',
+                title: 'PASTOR',
+                subtitle: 'O Cuidador e Protetor',
+                gradient: 'var(--pastor)',
+                verse: '"Apascenta as minhas ovelhas." — João 21:17',
+                desc: 'Você tem o perfil pastoral! Pastores são os guardiões do rebanho — você sente profunda compaixão pelas pessoas, percebe quando alguém está sofrendo e tem o impulso de cuidar, nutrir e proteger. Como o Bom Pastor de João 10, você conhece as "ovelhas" pelo nome e está disposto a sacrificar seu tempo e conforto para que elas cresçam. Sua grande força é a empatia, a paciência e a capacidade de criar ambientes seguros onde as pessoas se sentem amadas e podem florescer.',
+                traits: ['Empático', 'Paciente', 'Acolhedor', 'Protetor', 'Bom ouvinte', 'Conselheiro', 'Fiel', 'Compassivo'],
+                heroes: 'Jesus (O Bom Pastor), Tito, Barnabé, Davi'
+            },
+            mestre: {
+                icon: '📖',
+                title: 'MESTRE',
+                subtitle: 'O Ensinador e Formador',
+                gradient: 'var(--mestre)',
+                verse: '"Procura apresentar-te a Deus aprovado, como obreiro que não tem de que se envergonhar, que maneja bem a palavra da verdade." — 2 Timóteo 2:15',
+                desc: 'Você tem o perfil de mestre! Mestres são apaixonados pela Palavra de Deus e têm a capacidade de torná-la clara, prática e transformadora para os outros. Como Esdras, que "dedicou-se a estudar a Lei do Senhor, a praticá-la e a ensiná-la" (Esdras 7:10), você ama pesquisar, aprofundar-se nas Escrituras e comunicar com clareza o que aprendeu. Sua grande força é a capacidade de fundamentar pessoas na verdade, protegendo-as de enganos e ajudando-as a crescer com raízes profundas.',
+                traits: ['Estudioso', 'Didático', 'Analítico', 'Fundamentado', 'Paciente', 'Detalhista', 'Articulado', 'Sistemático'],
+                heroes: 'Esdras, Apolo, Paulo (em Éfeso), Gamaliel'
+            }
+        };
+
+        // --- 25 PERGUNTAS (5 por ministério) ---
+        // Cada resposta vai de 1 a 4
+
+        const QS = [
+            // APÓSTOLO (1-5)
+            { cat: 0, q: 'Quando vejo uma necessidade não atendida na igreja ou na sociedade, eu:', opts: ['Espero que alguém resolva', 'Comento sobre o problema mas não ajo', 'Penso em soluções mas raramente executo', 'Sinto uma compulsão de iniciar algo novo para resolver'] },
+            { cat: 0, q: 'Em relação a ir para lugares difíceis onde o Evangelho não chegou:', opts: ['Não penso nisso', 'Admiro quem vai mas não é pra mim', 'Tenho interesse mas não me sinto pronto', 'Sinto um chamado forte para fronteiras e lugares não alcançados'] },
+            { cat: 0, q: 'Quando trabalho em equipe, meu papel natural é:', opts: ['Sigo o que os outros decidem', 'Contribuo com ideias quando pedem', 'Organizo e ajudo na execução', 'Lanço a visão e mobilizo as pessoas para a ação'] },
+            { cat: 0, q: 'Minha relação com mudança e inovação na igreja é:', opts: ['Prefiro que tudo fique como está', 'Aceito mudanças quando são necessárias', 'Gosto de melhorar o que já existe', 'Amo criar coisas novas — projetos, ministérios, estratégias'] },
+            { cat: 0, q: 'Quando penso no futuro da igreja e do Reino, eu:', opts: ['Não costumo pensar nisso', 'Espero que Deus cuide dos detalhes', 'Tenho algumas ideias do que poderia ser feito', 'Enxergo claramente o que Deus quer fazer e trabalho para isso acontecer'] },
+
+            // PROFETA (6-10)
+            { cat: 1, q: 'Quando vejo injustiça ou pecado sendo tolerado na comunidade, eu:', opts: ['Finjo que não vi', 'Fico incomodado mas não falo nada', 'Converso com alguém de confiança sobre', 'Sinto uma urgência de confrontar com amor, mesmo que seja difícil'] },
+            { cat: 1, q: 'Em relação a ouvir a voz de Deus e receber direção espiritual:', opts: ['Nunca tive essa experiência', 'Às vezes sinto algo mas não tenho certeza', 'Busco direção e já tive confirmações', 'Tenho sensibilidade clara ao Espírito e frequentemente recebo direção para outros'] },
+            { cat: 1, q: 'Quando estou em um ambiente de adoração ou oração:', opts: ['Me distraio facilmente', 'Participo mas sem muita intensidade', 'Sinto a presença de Deus de forma real', 'Discirno o que Deus está fazendo e muitas vezes recebo palavras para compartilhar'] },
+            { cat: 1, q: 'Sobre falar verdades difíceis para pessoas que amo:', opts: ['Evito confronto a todo custo', 'Falo só se for muito grave', 'Falo com cuidado quando Deus pede', 'Tenho coragem de falar a verdade em amor, mesmo sabendo que pode custar a amizade'] },
+            { cat: 1, q: 'Minha postura diante de compromissos morais e éticos é:', opts: ['Sou flexível — cada situação é diferente', 'Tenho meus princípios mas às vezes cedo', 'Mantenho meus valores mesmo sob pressão', 'Sou zeloso pela santidade e não tolero hipocrisia, começando por mim mesmo'] },
+
+            // EVANGELISTA (11-15)
+            { cat: 2, q: 'Quando conheço alguém que não é cristão, meu primeiro instinto é:', opts: ['Não penso em falar de Jesus', 'Fico desconfortável se o assunto surgir', 'Espero uma oportunidade natural para falar', 'Busco construir um relacionamento estratégico para compartilhar o Evangelho'] },
+            { cat: 2, q: 'Sobre adaptar a linguagem da fé para diferentes públicos:', opts: ['Só sei falar "linguagem de igreja"', 'Tenho dificuldade em explicar de forma simples', 'Consigo explicar o Evangelho de forma acessível', 'Amo encontrar formas criativas e relevantes de comunicar Jesus para cada pessoa'] },
+            { cat: 2, q: 'Quando ouço a história de vida de alguém distante de Deus:', opts: ['Não me afeta muito', 'Sinto pena mas não sei o que fazer', 'Oro por essa pessoa', 'Meu coração se parte e eu faço qualquer coisa para apresentar Jesus a ela'] },
+            { cat: 2, q: 'Em relação a convidar pessoas para a igreja ou eventos cristãos:', opts: ['Nunca convido ninguém', 'Convido às vezes, quando é fácil', 'Convido regularmente pessoas próximas', 'Estou sempre convidando, criando oportunidades e acompanhando visitantes'] },
+            { cat: 2, q: 'Sobre compartilhar meu testemunho pessoal:', opts: ['Tenho vergonha de falar da minha história', 'Falo se alguém perguntar', 'Compartilho quando sinto que é apropriado', 'Uso minha história como ferramenta poderosa e a adapto para cada ouvinte'] },
+
+            // PASTOR (16-20)
+            { cat: 3, q: 'Quando percebo que alguém está passando por dificuldade emocional:', opts: ['Geralmente nem percebo', 'Percebo mas não sei o que fazer', 'Mando uma mensagem ou oro', 'Vou até a pessoa, ouço com paciência e caminho junto no processo'] },
+            { cat: 3, q: 'Em relação a acompanhar o crescimento espiritual de outros:', opts: ['Nunca fiz isso', 'Acho que isso é papel do pastor', 'Faço informalmente com amigos próximos', 'Invisto tempo intencional discipulando, aconselhando e acompanhando pessoas'] },
+            { cat: 3, q: 'Quando há um conflito entre pessoas na comunidade:', opts: ['Fujo de conflito', 'Fico neutro e não me envolvo', 'Tento mediar se me pedirem', 'Busco ativamente a reconciliação, cuidando de cada parte com amor'] },
+            { cat: 3, q: 'Sobre criar ambientes seguros para pessoas vulneráveis:', opts: ['Não penso nisso', 'Reconheço a importância mas não faço na prática', 'Tento ser acolhedor quando alguém me procura', 'Sou intencional em criar espaços onde pessoas podem ser transparentes sem julgamento'] },
+            { cat: 3, q: 'Minha reação quando alguém da comunidade se afasta da fé:', opts: ['Não me afeta muito', 'Lamento mas sigo em frente', 'Oro pela pessoa à distância', 'Vou atrás, sem julgamento, e faço o que for preciso para trazê-la de volta'] },
+
+            // MESTRE (21-25)
+            { cat: 4, q: 'Quando estudo a Bíblia, minha abordagem é:', opts: ['Leio rapidamente sem aprofundar', 'Leio e reflito superficialmente', 'Pesquiso o contexto e busco entender melhor', 'Estudo com ferramentas (comentários, grego/hebraico, contexto histórico) e amo cada detalhe'] },
+            { cat: 4, q: 'Quando alguém faz uma pergunta teológica ou doutrinária:', opts: ['Não sei responder e não me interessa muito', 'Dou minha opinião pessoal', 'Busco na Bíblia antes de responder', 'Amo pesquisar profundamente e explicar de forma clara e fundamentada'] },
+            { cat: 4, q: 'Sobre preparar e ensinar estudos bíblicos ou lições:', opts: ['Nunca fiz e não me sinto chamado', 'Já tentei mas não é minha área forte', 'Faço quando pedem e me empenho', 'É minha paixão — amo preparar conteúdo e ver as pessoas aprendendo'] },
+            { cat: 4, q: 'Quando ouço um ensino que parece fora da base bíblica:', opts: ['Aceito sem questionar', 'Fico desconfiado mas não verifico', 'Pesquiso depois para confirmar', 'Confronto com as Escrituras e protejo outros de ensinos distorcidos'] },
+            { cat: 4, q: 'Em relação a tornar conceitos complexos compreensíveis:', opts: ['Tenho dificuldade em explicar coisas', 'Explico de forma razoável', 'Consigo simplificar e usar boas ilustrações', 'Tenho um dom natural de pegar algo profundo e torná-lo prático e inesquecível'] }
+        ];
+
+        // --- PÁGINAS GENÉRICAS (sem revelar os ministérios) ---
+        const PAGES = [
+            { name: 'Parte 1', icon: '①', subtitle: 'Autoconhecimento e Chamado' },
+            { name: 'Parte 2', icon: '②', subtitle: 'Relacionamentos e Comunidade' },
+            { name: 'Parte 3', icon: '③', subtitle: 'Comunicação e Prática' },
+            { name: 'Parte 4', icon: '④', subtitle: 'Atitudes e Valores' },
+            { name: 'Parte 5', icon: '⑤', subtitle: 'Vocação e Impacto' }
+        ];
+
+        // --- ORDEM EMBARALHADA ---
+        // Cada página terá 1 pergunta de cada ministério (índices originais dentro de QS)
+        // Apóstolo: 0-4, Profeta: 5-9, Evangelista: 10-14, Pastor: 15-19, Mestre: 20-24
+        // Página N pega a pergunta N de cada ministério e embaralha a ordem dentro da página
+        let shuffledOrder = [];
+        function buildShuffledOrder() {
+            shuffledOrder = [];
+            for (let page = 0; page < 5; page++) {
+                // Uma pergunta de cada ministério para esta página
+                let pageQuestions = [
+                    page + 0,   // Apóstolo pergunta 'page'
+                    page + 5,   // Profeta pergunta 'page'
+                    page + 10,  // Evangelista pergunta 'page'
+                    page + 15,  // Pastor pergunta 'page'
+                    page + 20   // Mestre pergunta 'page'
+                ];
+                // Fisher-Yates para embaralhar a ordem dentro da página
+                for (let k = pageQuestions.length - 1; k > 0; k--) {
+                    const j = Math.floor(Math.random() * (k + 1));
+                    [pageQuestions[k], pageQuestions[j]] = [pageQuestions[j], pageQuestions[k]];
+                }
+                shuffledOrder.push(pageQuestions);
+            }
+        }
+
+        let answers = new Array(25).fill(null);
+        let userData = { name: '', church: '' };
+        let currentPage = 0;
+
+        // Esconde o quiz inicialmente
+        document.getElementById('quiz-section').style.display = 'none';
+
+        // --- FUNÇÕES DE INTERFACE ---
+
+        function toggleOtherChurch() {
+            const sel = document.getElementById('userChurch').value;
+            const div = document.getElementById('otherChurchDiv');
+            div.style.display = sel === 'OUTRA' ? 'block' : 'none';
+        }
+
+        function startQuiz() {
+            const name = document.getElementById('userName').value.trim();
+            let church = document.getElementById('userChurch').value;
+
+            if (church === 'OUTRA') {
+                const other = document.getElementById('otherChurchName').value.trim();
+                if (!other) { alert('Por favor, digite o nome da sua igreja.'); return; }
+                church = other;
+            }
+
+            if (!name) { alert('Por favor, digite seu nome para começar.'); return; }
+
+            userData.name = name;
+            userData.church = church;
+
+            document.querySelector('.hero').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'block';
+
+            renderQuestions();
+            renderStepIndicators();
+            goToPage(0);
+        }
+
+        function renderStepIndicators() {
+            let html = '';
+            PAGES.forEach((p, i) => {
+                html += `<div class="step-dot" id="step${i}" onclick="goToPage(${i})" title="${p.name}"></div>`;
+            });
+            document.getElementById('stepIndicators').innerHTML = html;
+        }
+
+        function updateStepIndicators() {
+            PAGES.forEach((pg, i) => {
+                const dot = document.getElementById(`step${i}`);
+                const pageAnswered = shuffledOrder[i].filter(qi => answers[qi] !== null).length;
+                dot.className = 'step-dot';
+                if (i === currentPage) dot.classList.add('active');
+                else if (pageAnswered === 5) dot.classList.add('completed');
+            });
+            const pg = PAGES[currentPage];
+            const pageAnswered = shuffledOrder[currentPage].filter(qi => answers[qi] !== null).length;
+            document.getElementById('stepLabel').innerHTML = `${pg.icon} ${pg.name} <span style="font-size:.75em;color:var(--muted)">${pg.subtitle}</span> <span style="color:var(--accent)">(${pageAnswered}/5)</span>`;
+        }
+
+        function renderQuestions() {
+            buildShuffledOrder();
+            const qDiv = document.getElementById('questions');
+            let html = '';
+            let globalNum = 0;
+
+            PAGES.forEach((pg, pageIdx) => {
+                html += `<div class="quiz-page" id="page${pageIdx}">`;
+                html += `<div class="category-header"><div class="cat-icon">${pg.icon}</div><div class="cat-info"><h2>${pg.name}</h2><span>${pg.subtitle} • Perguntas ${pageIdx * 5 + 1}-${pageIdx * 5 + 5}</span></div></div>`;
+
+                shuffledOrder[pageIdx].forEach(qi => {
+                    globalNum++;
+                    const q = QS[qi];
+                    let optsWithVal = q.opts.map((text, idx) => ({ text, val: idx + 1 }));
+
+                    // Fisher-Yates Shuffle das opções
+                    for (let k = optsWithVal.length - 1; k > 0; k--) {
+                        const j = Math.floor(Math.random() * (k + 1));
+                        [optsWithVal[k], optsWithVal[j]] = [optsWithVal[j], optsWithVal[k]];
+                    }
+
+                    html += `<div class="question" id="q${qi}"><div class="q-num">Pergunta ${globalNum}</div><div class="q-text">${q.q}</div><div class="options">`;
+                    optsWithVal.forEach((o, j) => {
+                        html += `<div class="option" onclick="pick(${qi}, ${o.val}, ${j})" id="o${qi}_${j}"><div class="radio"></div><div class="label">${o.text}</div></div>`;
+                    });
+                    html += '</div></div>';
+                });
+
+                // Navigation buttons
+                html += '<div class="pagination-nav">';
+                if (pageIdx > 0) {
+                    html += `<button class="btn-nav" onclick="goToPage(${pageIdx - 1})">← Anterior</button>`;
+                } else {
+                    html += '<div></div>';
+                }
+                html += `<span class="page-counter">${pageIdx + 1} de ${PAGES.length}</span>`;
+                if (pageIdx < PAGES.length - 1) {
+                    html += `<button class="btn-nav primary" onclick="goToPage(${pageIdx + 1})">Próxima →</button>`;
+                } else {
+                    html += `<button class="btn-submit" id="btnSubmit" disabled onclick="showResult()" style="margin:0;padding:14px 28px;font-size:.9em;width:auto">DESCOBRIR MEU PERFIL ✨</button>`;
+                }
+                html += '</div>';
+
+                html += '</div>'; // close quiz-page
+            });
+
+            qDiv.innerHTML = html;
+        }
+
+        function goToPage(pageIdx) {
+            document.querySelectorAll('.quiz-page').forEach(p => p.classList.remove('active'));
+            const page = document.getElementById(`page${pageIdx}`);
+            page.classList.add('active');
+            currentPage = pageIdx;
+            updateStepIndicators();
+            window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 10, behavior: 'smooth' });
+        }
+
+        function pick(qi, score, visualIndex) {
+            answers[qi] = score;
+
+            for (let j = 0; j < 4; j++) {
+                document.getElementById(`o${qi}_${j}`).classList.toggle('selected', j === visualIndex);
+            }
+
+            document.getElementById(`q${qi}`).classList.add('answered');
+            updateProgress();
+            updateStepIndicators();
+        }
+
+        function updateProgress() {
+            const done = answers.filter(a => a !== null).length;
+            document.getElementById('progressFill').style.width = (done / 25 * 100) + '%';
+            document.getElementById('progressText').textContent = `${done} de 25 respondidas`;
+            const btn = document.getElementById('btnSubmit');
+            if (btn) btn.disabled = done < 25;
+        }
+
+        // --- RESULTADO ---
+        window.showResult = function () {
+            // Calcular totais por ministério usando a propriedade 'cat' de cada pergunta
+            const catTotals = CATS.map((_, catIdx) => {
+                let total = 0;
+                QS.forEach((q, qi) => {
+                    if (q.cat === catIdx && answers[qi] !== null) total += answers[qi];
+                });
+                return total;
+            });
+
+            // Encontrar o ministério dominante
+            let maxScore = 0;
+            let maxIdx = 0;
+            catTotals.forEach((score, i) => {
+                if (score > maxScore) {
+                    maxScore = score;
+                    maxIdx = i;
+                }
+            });
+
+            // Encontrar o secundário
+            let secScore = 0;
+            let secIdx = 0;
+            catTotals.forEach((score, i) => {
+                if (i !== maxIdx && score > secScore) {
+                    secScore = score;
+                    secIdx = i;
+                }
+            });
+
+            const dominantCat = CATS[maxIdx];
+            const secondaryCat = CATS[secIdx];
+            const profile = PROFILES[dominantCat.id];
+            const total = catTotals.reduce((a, b) => a + b, 0);
+
+            document.getElementById('quiz-section').style.display = 'none';
+            const r = document.getElementById('resultSection');
+            r.style.display = 'block';
+
+            document.getElementById('resIcon').textContent = profile.icon;
+            document.getElementById('resTitle').textContent = profile.title;
+            document.getElementById('resSubtitle').textContent = profile.subtitle;
+
+            const p = document.getElementById('resProfile');
+            p.textContent = `${dominantCat.icon} ${dominantCat.name} (${catTotals[maxIdx]}/20) + ${secondaryCat.icon} ${secondaryCat.name} (${catTotals[secIdx]}/20)`;
+            p.style.background = profile.gradient;
+            p.style.color = '#fff';
+
+            document.getElementById('resDesc').textContent = profile.desc;
+            document.getElementById('resVerse').innerHTML = profile.verse;
+
+            // Traits
+            let traitsHtml = `<h4>Suas Características</h4><div class="trait-list">`;
+            profile.traits.forEach(t => {
+                traitsHtml += `<span class="trait-tag">${t}</span>`;
+            });
+            traitsHtml += `</div><p style="margin-top:12px;font-size:.85em;color:var(--muted)">📜 Referências bíblicas: ${profile.heroes}</p>`;
+            document.getElementById('resTraits').innerHTML = traitsHtml;
+
+            // Cat scores
+            let catHtml = '';
+            CATS.forEach((c, i) => {
+                const pct = catTotals[i] / 20 * 100;
+                const isMax = i === maxIdx;
+                catHtml += `<div class="cat-score-item" style="${isMax ? 'border-color:' + c.color + ';box-shadow:0 0 15px ' + c.color + '22' : ''}"><div class="cat-score-top"><span class="cat-score-name">${c.icon} ${c.name}${isMax ? ' ⭐' : ''}</span><span class="cat-score-val">${catTotals[i]}/20</span></div><div class="cat-score-bar"><div class="cat-score-fill" style="width:${pct}%;background:${c.color}"></div></div></div>`;
+            });
+            document.getElementById('catScores').innerHTML = catHtml;
+
+            // Print data
+            document.getElementById('printName').textContent = 'Nome: ' + userData.name;
+            document.getElementById('printChurch').textContent = 'Igreja: ' + userData.church;
+            document.getElementById('printDate').textContent = new Date().toLocaleDateString('pt-BR');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Preparar dados para envio
+            const finalData = {
+                tipo: 'ministerial',
+                nome: userData.name,
+                igreja: userData.church,
+                total: total,
+                perfil: profile.title,
+                perfil_secundario: PROFILES[secondaryCat.id].title,
+                cat_apostolo: catTotals[0],
+                cat_profeta: catTotals[1],
+                cat_evangelista: catTotals[2],
+                cat_pastor: catTotals[3],
+                cat_mestre: catTotals[4],
+                respostas: answers
+            };
+
+            saveAndSend(finalData);
+        };
+
+        // --- LÓGICA DE SINCRONIZAÇÃO E OFFLINE ---
+
+        function saveAndSend(data) {
+            if (!navigator.onLine) {
+                saveLocal(data);
+                showSyncStatus('off');
+            } else {
+                sendToGoogle(data);
+            }
+        }
+
+        function saveLocal(data) {
+            let pending = JSON.parse(localStorage.getItem('pendingMinisterial') || '[]');
+            pending.push(data);
+            localStorage.setItem('pendingMinisterial', JSON.stringify(pending));
+        }
+
+        function sendToGoogle(data) {
+            if (GOOGLE_SCRIPT_URL.includes('COLE_AQUI')) {
+                console.warn('URL do Script não configurada!');
+                showSyncStatus('success');
+                return;
+            }
+
+            showSyncStatus('sync');
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                cache: 'no-cache',
+                redirect: 'follow',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(data)
+            })
+                .then(() => {
+                    showSyncStatus('success');
+                })
+                .catch(err => {
+                    console.error('Erro no envio, salvando local:', err);
+                    saveLocal(data);
+                    showSyncStatus('off');
+                });
+        }
+
+        function syncPendingData() {
+            if (!navigator.onLine) return;
+            const pending = JSON.parse(localStorage.getItem('pendingMinisterial') || '[]');
+            if (pending.length === 0) return;
+
+            showSyncStatus('sync');
+
+            const item = pending.shift();
+
+            if (GOOGLE_SCRIPT_URL.includes('COLE_AQUI')) {
+                localStorage.setItem('pendingMinisterial', JSON.stringify(pending));
+                if (pending.length > 0) setTimeout(syncPendingData, 500);
+                else showSyncStatus('success');
+                return;
+            }
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                cache: 'no-cache',
+                redirect: 'follow',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(item)
+            })
+                .then(() => {
+                    localStorage.setItem('pendingMinisterial', JSON.stringify(pending));
+                    if (pending.length > 0) {
+                        setTimeout(syncPendingData, 500);
+                    } else {
+                        showSyncStatus('success');
+                    }
+                })
+                .catch(err => {
+                    pending.unshift(item);
+                    localStorage.setItem('pendingMinisterial', JSON.stringify(pending));
+                    showSyncStatus('off');
+                });
+        }
+
+        function showSyncStatus(status) {
+            const el = document.getElementById('syncStatus');
+            const icon = document.getElementById('syncIcon');
+            const msg = document.getElementById('syncMsg');
+
+            el.style.display = 'flex';
+
+            if (status === 'off') {
+                el.style.border = '1px solid #f97316';
+                icon.textContent = '☁️';
+                msg.textContent = 'Salvo Offline.';
+                setTimeout(() => el.style.display = 'none', 5000);
+            }
+            else if (status === 'sync') {
+                el.style.border = '1px solid #f97316';
+                icon.textContent = '🔄';
+                msg.textContent = 'Sincronizando...';
+            }
+            else if (status === 'success') {
+                el.style.border = '1px solid #22c55e';
+                icon.textContent = '✅';
+                msg.textContent = 'Salvo!';
+                setTimeout(() => el.style.display = 'none', 4000);
+            }
+        }
+
+        // Iniciar listeners
+        window.addEventListener('online', syncPendingData);
+        window.addEventListener('load', syncPendingData);
+
+    </script>
+</body>
+
+</html>
