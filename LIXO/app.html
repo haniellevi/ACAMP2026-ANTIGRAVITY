@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Discípulo Radical 2026</title>
+    <meta name="theme-color" content="#1a1a1d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Slab:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            /* PALETA RÚSTICO AVENTUREIRO (Baseado na logo Acamp Filadélfia) */
+            --bg: #1e1b18;
+            /* Dark Umber - Terra Escura */
+            --card: #2b2623;
+            /* Wood Bark - Casca de Árvore */
+            --fire: #d35400;
+            /* Burnt Ember - Laranja Queimado (Ação) */
+            --neon: #8da399;
+            /* Sage Green - Musgo Desbotado (Destaque Suave) */
+            --sun: #f1c40f;
+            /* Goldenrod - Dourado Envelhecido (Conquista) */
+            --text: #ecf0f1;
+            /* Off-White - Papel (Leitura) */
+            --muted: #95a5a6;
+            /* Cinza Pedra */
+            --success: #27ae60;
+            /* Verde Floresta */
+            --border: #4e4038;
+            /* Borda Marrom */
+            --dark-glass: rgba(30, 27, 24, 0.95);
+            --glass: rgba(255, 255, 255, 0.05);
+
+            /* TIPOGRAFIA */
+            --font-title: 'Bebas Neue', display;
+            --font-body: 'Roboto Slab', serif;
+            /* Fonte de documento antigo/jornal */
+
+            /* LAYOUT */
+            --safe-area-top: env(safe-area-inset-top);
+            --safe-area-bottom: env(safe-area-inset-bottom);
+            --nav-height: 80px;
+            /* Um pouco mais alto para estilo rústico */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg);
+            /* Textura de Ruído Sutil para simular papel/tecido/terra */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            color: var(--text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-title);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .text-neon {
+            color: var(--neon);
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+        }
+
+        .text-fire {
+            color: var(--fire);
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .text-sun {
+            color: var(--sun);
+            text-shadow: 0 0 10px rgba(255, 230, 109, 0.3);
+        }
+
+        /* --- APP SHELL --- */
+        .app-view {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            padding: calc(var(--safe-area-top) + 20px) 20px calc(var(--nav-height) + 20px + var(--safe-area-bottom));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .app-view.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* --- COMPONENTS --- */
+        .btn {
+            background: var(--fire);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            font-family: var(--font-title);
+            font-size: 24px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            /* Rústico: cantos semi-retos */
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+            /* Sombra sólida Tática */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* 3D effect */
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+            /* Efeito de clique físico */
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-neon {
+            background: var(--neon);
+            color: var(--bg);
+            /* Texto escuro no fundo claro sage */
+            box-shadow: 2px 2px 0px #5f7068;
+            /* Sombra mais escura do sage */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-neon:active {
+            box-shadow: 0 0 0 transparent;
+            transform: translate(2px, 2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            box-shadow: none;
+            color: var(--muted);
+            border-radius: 4px;
+        }
+
+        .btn-outline.selected {
+            border-color: var(--neon);
+            color: var(--neon);
+            background: rgba(141, 163, 153, 0.1);
+            /* Sage transparente */
+        }
+
+        .card {
+            background: var(--card);
+            /* Wood Bark */
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            /* Levemente arredondado */
+            padding: 20px;
+            margin-bottom: 16px;
+            backdrop-filter: none;
+            /* Rústico não usa glassmorphism futurista */
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        /* Efeito de borda dupla ou costura */
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px dashed rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        /* --- ONBOARDING --- */
+        #view-onboarding {
+            display: flex;
+            /* Override default block */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle at center, #2a2a2e 0%, #1a1a1d 70%);
+            z-index: 1000;
+            padding: 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .ob-step {
+            display: none;
+            text-align: center;
+            width: 100%;
+            animation: slideIn 0.4s ease;
+        }
+
+        .ob-step.active {
+            display: block;
+        }
+
+        .ob-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--neon);
+            color: var(--text);
+            font-size: 24px;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            margin: 30px 0;
+            font-family: var(--font-title);
+            outline: none;
+        }
+
+        /* Ajuste para data */
+        input[type="date"] {
+            color-scheme: dark;
+        }
+
+        /* --- NAVIGATION --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(var(--nav-height) + var(--safe-area-bottom));
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding-top: 10px;
+            z-index: 500;
+        }
+
+        .nav-item {
+            color: var(--muted);
+            text-align: center;
+            font-size: 10px;
+            cursor: pointer;
+            width: 20%;
+            transition: color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-item.active {
+            color: var(--neon);
+        }
+
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+            transition: transform 0.2s;
+        }
+
+        .nav-item.active .nav-icon {
+            transform: translateY(-4px);
+        }
+
+        /* --- PASSAPORTE --- */
+        .passport-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .seal-card {
+            aspect-ratio: 1;
+            background: var(--card);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            opacity: 0.5;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .seal-card.owned {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(26, 26, 29, 0));
+            border-color: var(--neon);
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.1);
+        }
+
+        .seal-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            filter: grayscale(1);
+            transition: transform 0.3s;
+        }
+
+        .seal-card.owned .seal-icon {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        .seal-name {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-family: var(--font-title);
+            letter-spacing: 1px;
+        }
+
+        .seal-card.owned .seal-name {
+            color: var(--neon);
+        }
+
+        /* --- TIMELINE --- */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+            margin: 20px 0 0 10px;
+        }
+
+        .event {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid var(--muted);
+        }
+
+        .event.now::before {
+            background: var(--fire);
+            border-color: var(--fire);
+            box-shadow: 0 0 10px var(--fire);
+            animation: pulse 1.5s infinite;
+        }
+
+        .event-time {
+            font-family: var(--font-title);
+            color: var(--neon);
+            font-size: 20px;
+        }
+
+        .event-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .event-day {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- ADMIN --- */
+        .admin-stat {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .admin-stat .num {
+            font-family: var(--font-title);
+            font-size: 40px;
+            color: var(--sun);
+            line-height: 1;
+        }
+
+        .admin-stat .label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        /* --- UTILS --- */
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+            }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal {
+            background: var(--bg);
+            border: 1px solid var(--fire);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            animation: slideIn 0.3s;
+        }
+
+        .pin-display {
+            font-family: var(--font-title);
+            font-size: 40px;
+            letter-spacing: 10px;
+            margin: 20px 0;
+            color: var(--text);
+            border-bottom: 2px solid var(--fire);
+            display: inline-block;
+            min-width: 120px;
+            min-height: 48px;
+        }
+
+        .pin-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-pad {
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 10px;
+        }
+
+        .btn-pad:active {
+            background: var(--border);
+        }
+
+        /* Loader */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--border);
+            border-bottom-color: var(--fire);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        #loading-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* TOAST NOTIFICATION RÚSTICO */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .toast {
+            background: var(--card);
+            border-left: 4px solid var(--neon);
+            color: var(--text);
+            padding: 15px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInDown 0.3s ease;
+            pointer-events: all;
+            font-family: var(--font-body);
+            font-size: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .toast-error {
+            border-color: var(--fire);
+        }
+
+        .toast-success {
+            border-color: var(--success);
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADING -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <p style="margin-top: 20px; color: var(--muted); font-size: 12px; font-family: var(--font-body);">Conectando ao
+            QG...</p>
+        <button onclick="loading(false)"
+            style="margin-top: 20px; background: transparent; border: 1px solid var(--muted); color: var(--muted); padding: 5px 15px; border-radius: 4px; font-size: 10px; cursor: pointer;">CANCELAR</button>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- WELCOME SCREEN (NOVA HOME INICIAL) -->
+    <div id="view-welcome"
+        style="display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.95)), url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; text-align: center;">
+
+        <div style="margin-bottom: 40px; animation: fadeInDown 1s ease;">
+            <h3
+                style="color: var(--neon); letter-spacing: 4px; font-size: 14px; margin-bottom: 10px; font-family: var(--font-title);">
+                PROJETO</h3>
+            <h1
+                style="font-size: 72px; line-height: 0.8; color: var(--text); font-family: var(--font-title); text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);">
+                ACAMP<br><span style="color: var(--fire); font-size: 84px;">2026</span></h1>
+            <div style="height: 2px; width: 60px; background: var(--fire); margin: 20px auto;"></div>
+            <p style="color: var(--muted); font-size: 16px; max-width: 250px; margin: 0 auto; line-height: 1.4;">"Nenhum
+                soldado em serviço se envolve em negócios civis..."</p>
+        </div>
+
+        <div
+            style="width: 100%; max-width: 280px; display: flex; flex-direction: column; gap: 15px; animation: fadeInUp 1s ease 0.3s backwards;">
+            <button class="btn btn-neon" onclick="navContainer('voucher')"
+                style="font-size: 16px; padding: 18px;">COMEÇAR JORNADA</button>
+            <button class="btn btn-outline" onclick="navContainer('login')"
+                style="font-size: 12px; border-color: rgba(255,255,255,0.1); color: var(--muted);">JÁ SOU UM
+                GUERREIRO</button>
+        </div>
+
+        <div onclick="openAdminDiscrete()"
+            style="position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 2px; cursor: pointer;">
+            ADMIN • 2026
+        </div>
+    </div>
+
+    <!-- ONBOARDING (PRIMEIRO ACESSO) -->
+    <div id="view-onboarding" style="display: none;">
+        <div class="ob-step active" id="step-1">
+            <h1 style="font-size: 60px; color: var(--fire); line-height: 0.8;">BEM-VINDO<br><span class="text-neon">AO
+                    FRONT</span></h1>
+            <p style="margin: 20px 0; color: var(--muted)">Prepare-se para viver dias de definição discipular.</p>
+            <button class="btn" onclick="nextStep(2)">COMEÇAR MISSÃO</button>
+            <button class="btn btn-outline" onclick="openLoginView()"
+                style="margin-top: 15px; border: none; color: var(--muted); font-size: 14px;">JÁ SOU GUERREIRO
+                (LOGIN)</button>
+        </div>
+
+        <div class="ob-step" id="step-2">
+            <h2>QUAL SEU NOME DE GUERRA?</h2>
+            <p class="text-muted">(Seu nome completo)</p>
+            <input type="text" id="reg-name" class="ob-input" placeholder="Digite aqui..." autocomplete="off">
+            <button class="btn btn-neon" onclick="submitName()">AVANÇAR</button>
+        </div>
+
+        <div class="ob-step" id="step-3">
+            <h2>DATA DE NASCIMENTO</h2>
+            <input type="date" id="reg-dob" class="ob-input">
+            <button class="btn btn-neon" onclick="nextStep(4)">AVANÇAR</button>
+        </div>
+
+        <div class="ob-step" id="step-4">
+            <h2>SEXO</h2>
+            <div style="display: flex; gap: 10px; margin: 30px 0;">
+                <button class="btn btn-outline" id="sex-m" onclick="selectSex('M', this)">MASCULINO</button>
+                <button class="btn btn-outline" id="sex-f" onclick="selectSex('F', this)">FEMININO</button>
+            </div>
+            <input type="hidden" id="reg-sex">
+            <button class="btn btn-neon" onclick="finishReg()">ALISTAR-SE</button>
+        </div>
+    </div>
+
+    <!-- LOGIN VIEW -->
+    <div id="view-login"
+        style="display: none; flex-direction: column; justify-content: center; height: 100vh; padding: 40px; background: var(--bg); position: fixed; top: 0; width: 100%; z-index: 1100;">
+        <h1>RETORNAR AO <span class="text-neon">FRONT</span></h1>
+        <p style="color: var(--muted); margin-bottom: 30px;">Informe seus dados para recuperar o passaporte.</p>
+
+        <label style="color: var(--neon); font-size: 12px;">PRIMEIRO NOME</label>
+        <input type="text" id="login-name" class="ob-input" placeholder="Ex: JOAO" style="margin-top: 5px;">
+
+        <label style="color: var(--neon); font-size: 12px; margin-top: 20px;">DATA DE NASCIMENTO (DDMM)</label>
+        <input type="tel" id="login-pass" class="ob-input" placeholder="Ex: 0510 (5 de Out)" maxlength="4"
+            style="margin-top: 5px;">
+
+        <button class="btn" onclick="submitLogin()">ENTRAR</button>
+        <button class="btn btn-outline" onclick="closeLoginView()" style="margin-top: 15px;">CANCELAR</button>
+    </div>
+
+    <!-- VOUCHER ACCESS GATE -->
+    <div id="view-voucher"
+        style="display: none; flex-direction: column; justify-content: center; height: 100vh; padding: 40px; background: var(--bg); position: fixed; top: 0; width: 100%; z-index: 2000;">
+        <h1>ACESSO <span class="text-fire">RESTRITO</span></h1>
+        <p style="color: var(--muted); margin-bottom: 30px;">Informe o Código de Acesso do seu Voucher.</p>
+
+        <input type="text" id="voucher-code" class="ob-input" placeholder="EX: ACAMP-X9Z2"
+            style="font-size: 24px; text-transform: uppercase;">
+
+        <button class="btn" onclick="submitVoucher()">VALIDAR ACESSO</button>
+        <button class="btn btn-outline" onclick="navContainer('welcome')"
+            style="margin-top: 15px; border-color: rgba(255,255,255,0.1); color: var(--muted); font-size: 12px;">VOLTAR</button>
+        <p style="text-align: center; font-size: 10px; color: var(--muted); margin-top: 20px;">
+            Apenas guerreiros inscritos.<br>Problemas? Procure a Coordenação.
+        </p>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="main-app" style="display: none;">
+
+        <!-- HOME VIEW (Mantida) -->
+        <section id="view-home" class="app-view active">
+            <!-- ... Conteúdo da Home ... -->
+            <!-- MANTIDO DO ARQUIVO ORIGINAL (Recriando apenas wrapper para referência, mas editando internamente) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div>
+                    <h3 style="color: var(--muted); font-size: 14px; margin: 0;">ACAMPAMENTO 2026</h3>
+                    <h1 id="user-name-display" style="font-size: 32px; margin: 0;">OLÁ, GUERREIRO</h1>
+                </div>
+                <!-- NOVO: Foto de Perfil -->
+                <div onclick="openProfile()" id="profile-btn"
+                    style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--neon); background-size: cover; background-position: center; background-image: url('https://ui-avatars.com/api/?name=Guerreiro&background=random'); box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);">
+                </div>
+            </div>
+
+            <!-- Progresso -->
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span
+                        style="font-weight: bold; font-size: 12px; color: var(--neon); font-family: var(--font-title); letter-spacing: 1px;">PROGRESSO
+                        DO DISCÍPULO</span>
+                    <span id="progress-text"
+                        style="font-weight: bold; font-size: 12px; font-family: var(--font-title);">0/7 SELOS</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); height: 10px; border-radius: 10px; overflow: hidden;">
+                    <div id="progress-bar"
+                        style="background: var(--neon); width: 0%; height: 100%; transition: width 1s ease;"></div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 10px;">PRÓXIMA MISSÃO</h3>
+            <div class="card" style="border-left: 4px solid var(--sun); display: flex; align-items: center; gap: 15px;">
+                <div class="text-neon" id="next-event-time"
+                    style="font-family: var(--font-title); font-size: 32px; min-width: 60px;">--:--</div>
+                <div>
+                    <p id="next-event-name" style="font-weight: bold; font-size: 16px;">Carregando...</p>
+                    <p id="next-event-day" class="text-muted" style="font-size: 12px; margin-top: 2px;">Mantenha-se
+                        alerta.</p>
+                </div>
+            </div>
+
+            <!-- Navegação Rápida -->
+            <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="card" onclick="nav('passport')" style="text-align: center; padding: 15px;">
+                    <span style="font-size: 30px;">🛡️</span>
+                    <h4 style="margin-top: 10px; font-size: 14px;">PASSAPORTE</h4>
+                </div>
+                <div class="card" onclick="nav('eudeus')" style="text-align: center; padding: 15px;">
+                    <span style="font-size: 30px;">🙏</span>
+                    <h4 style="margin-top: 10px; font-size: 14px;">EU + DEUS</h4>
+                </div>
+                <div class="card" onclick="nav('my-scales')"
+                    style="text-align: center; padding: 15px; grid-column: span 2; border-color: var(--neon);">
+                    <span style="font-size: 30px;">🧹</span>
+                    <h4 style="margin-top: 10px; font-size: 14px;">MINHAS ESCALAS</h4>
+                </div>
+            </div>
+
+            <!-- Link Regras -->
+            <div onclick="nav('rules')"
+                style="text-align: center; margin-top: 20px; padding: 15px; color: var(--muted); text-decoration: underline; font-size: 12px;">
+                Ver Regras e Boas Práticas
+            </div>
+        </section>
+
+        <!-- VIEWS EXISTENTES (Passport, Timeline alterada) -->
+
+        <!-- PASSPORT VIEW -->
+        <section id="view-passport" class="app-view">
+            <h1>SEU <span class="text-neon">PASSAPORTE</span></h1>
+            <p style="color: var(--muted); margin-bottom: 20px;">Colecione os selos da sua jornada.</p>
+
+            <div class="card">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div
+                        style="width: 60px; height: 60px; background: var(--bg); border: 2px solid var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; overflow: hidden;">
+                        <img id="pp-photo" src="https://ui-avatars.com/api/?name=Guerreiro&background=random"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div>
+                        <h2 id="pp-name" style="margin: 0; font-size: 18px; color: var(--text);">GUERREIRO</h2>
+                        <span
+                            style="color: var(--neon); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;">Embaixador
+                            do Reino</span>
+                    </div>
+                </div>
+
+                <div id="passport-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                    <!-- Populated by JS -->
+                    <p style="grid-column: span 3; text-align: center; color: var(--muted);">Carregando selos...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINHAS ESCALAS VIEW (NOVA) -->
+        <section id="view-my-scales" class="app-view">
+            <h1>MINHAS <span class="text-neon">MISSÕES</span></h1>
+            <p style="color: var(--muted); margin-bottom: 20px;">Servir é reinar. Cumpra com excelência.</p>
+            <div id="my-scales-list">
+                <!-- Injetado via JS -->
+                <div class="card" style="text-align: center; padding: 40px;">
+                    <p class="text-muted">Carregando missões...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHEDULE FULL -->
+        <section id="view-schedfull" class="app-view">
+            <h1>AGENDA <span class="text-neon">COMPLETA</span></h1>
+
+            <!-- ABAS DE NAVEGAÇÃO DA AGENDA -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px;">
+                <button class="btn btn-outline btn-sm active-sched-tab"
+                    onclick="filterSchedule('all', this)">TUDO</button>
+                <button class="btn btn-outline btn-sm" onclick="filterSchedule('sab', this)">SÁB</button>
+                <button class="btn btn-outline btn-sm" onclick="filterSchedule('dom', this)">DOM</button>
+                <button class="btn btn-outline btn-sm" onclick="filterSchedule('seg', this)">SEG</button>
+                <button class="btn btn-outline btn-sm" onclick="filterSchedule('ter', this)">TER</button>
+            </div>
+
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <thead style="background: rgba(255,255,255,0.05); color: var(--neon);">
+                        <tr>
+                            <th style="padding: 10px; text-align: left;">HORA</th>
+                            <th style="padding: 10px; text-align: left;">ATIVIDADE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="full-sched-body">
+                        <!-- JS Populate -->
+                    </tbody>
+                </table>
+            </div>
+            <br><br>
+        </section>
+
+        <!-- EU + DEUS VIEW (NOVA) -->
+        <section id="view-eudeus" class="app-view">
+            <h1>EU + <span class="text-sun">DEUS</span></h1>
+            <p style="color: var(--muted); margin-bottom: 20px;">Reflita sobre cada palavra. Valide sua presença.</p>
+            <div id="sermons-list">
+                <!-- Lista de Sermões injetada via JS -->
+            </div>
+        </section>
+
+        <!-- RULES VIEW -->
+        <section id="view-rules" class="app-view">
+            <h1>REGRAS DE <span class="text-neon">COMBATE</span></h1>
+            <p style="color: var(--muted); margin-bottom: 20px;">Diretrizes para a convivência no campo de batalha.</p>
+
+            <div class="card">
+                <h3 style="color: var(--neon); margin-bottom: 15px;">🤝 CONVIVÊNCIA</h3>
+                <ul style="padding-left: 20px; color: #ddd; line-height: 1.6;">
+                    <li>Respeite todos os horários da programação. Pontualidade é honra.</li>
+                    <li>Cuide dos seus pertences e do espaço coletivo como se fossem seus.</li>
+                    <li>Mantenha o quarto/barraca organizado durante todo o acampamento.</li>
+                    <li>Desligue o celular nos momentos de culto e devocional. Esteja presente.</li>
+                    <li>Trate todos com respeito — somos um corpo.</li>
+                    <li>Não saia da área do acampamento sem autorização de um líder.</li>
+                    <li>Namoro: compostura e respeito. Nada de isolamento a dois.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-left: 3px solid var(--fire);">
+                <h3 style="color: var(--fire); margin-bottom: 15px;">🛡️ SEGURANÇA</h3>
+                <ul style="padding-left: 20px; color: #ddd; line-height: 1.6;">
+                    <li>Banhos e atividades aquáticas somente com supervisão.</li>
+                    <li>Problemas de saúde: informe imediatamente um líder.</li>
+                    <li>Proibido substâncias ilícitas, bebida alcoólica ou cigarro.</li>
+                    <li>Bullying será tratado com seriedade. Denuncie.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-left: 3px solid var(--gold);">
+                <h3 style="color: var(--gold); margin-bottom: 15px;">✝️ PROPÓSITO</h3>
+                <ul style="padding-left: 20px; color: #ddd; line-height: 1.6;">
+                    <li>Participe de TODAS as atividades — cada momento foi planejado para você.</li>
+                    <li>Cuide das escalas de serviço com excelência — servir é adorar.</li>
+                    <li>Ore pelos pregadores, músicos e líderes.</li>
+                    <li>Escreva o que Deus falar. Use este caderno. Registre tudo.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: rgba(255, 255, 255, 0.05); text-align: center; font-style: italic;">
+                "Vocês não estão aqui por acaso. Deus trouxe vocês pra este lugar, neste momento, com um propósito:
+                FORJAR discípulos radicais."
+            </div>
+        </section>
+
+        <!-- NOTEBOOK VIEW -->
+        <section id="view-notebook" class="app-view">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1>CADERNO <span class="text-sun">LIVRE</span></h1>
+                <button onclick="shareNotes()" style="background: none; border: none; font-size: 24px;">📤</button>
+            </div>
+            <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Anotações gerais.</p>
+            <textarea id="notebook-area" class="card"
+                style="width: 100%; height: 60vh; background: var(--card); border: none; color: var(--text); padding: 20px; font-family: var(--font-body); font-size: 16px; outline: none; resize: none; line-height: 1.5;"
+                placeholder="Escreva livremente..."></textarea>
+            <p id="save-status"
+                style="text-align: right; color: var(--neon); font-size: 12px; margin-top: 10px; opacity: 0; transition: opacity 0.5s;">
+                Salvo.</p>
+        </section>
+
+        <!-- ADMIN VIEW (Mantida layout) -->
+        <section id="view-admin" class="app-view">
+            <h1>COMANDO <span class="text-fire">GERAL</span></h1>
+            <div id="admin-login-form">
+                <p style="color: var(--muted); margin-bottom: 20px;">Acesso restrito à liderança.</p>
+                <input type="text" id="adm-email" placeholder="Usuário ou Email" class="ob-input"
+                    style="font-size: 18px; text-align: left;">
+                <input type="password" id="adm-pass" placeholder="Senha" class="ob-input"
+                    style="font-size: 18px; text-align: left;">
+                <button class="btn" onclick="performAdminLogin()">ENTRAR</button>
+                <button class="btn btn-outline" onclick="if(USER) nav('home'); else nav('welcome');"
+                    style="margin-top: 10px;">VOLTAR</button>
+            </div>
+
+            <div id="admin-panel" class="hidden">
+                <div
+                    style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <button class="btn btn-outline" onclick="logoutAdmin()"
+                        style="font-size: 14px; padding: 10px; width: auto; margin: 0;">SAIR</button>
+                    <button class="btn btn-neon" onclick="promptVouchers()"
+                        style="font-size: 14px; padding: 10px; width: auto; margin: 0;"> + VOUCHERS</button>
+                    <button class="btn" onclick="nav('admin-scales')"
+                        style="font-size: 14px; padding: 10px; flex-grow: 1; margin:0; background: var(--sun); color: var(--bg);">GESTÃO
+                        ESCALAS</button>
+                </div>
+                <!-- ... Stats e Lista (Mantidos) ... -->
+                <div id="camper-list"></div>
+            </div>
+        </section>
+
+        <!-- ADMIN SCALES VIEW (NOVA) -->
+        <section id="view-admin-scales" class="app-view">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                <button onclick="nav('admin')" style="background:none; border:none; color: var(--muted);">←
+                    VOLTAR</button>
+                <h2 style="margin:0; font-size:18px; color:var(--sun);">GESTÃO DE ESCALAS</h2>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <button class="btn btn-outline" onclick="runAutoScales()" style="font-size:12px; padding:10px;">⚡ GERAR
+                    AUTOMÁTICO</button>
+                <button class="btn btn-outline" onclick="loadAdminScales()" style="font-size:12px; padding:10px;">🔄
+                    ATUALIZAR</button>
+            </div>
+
+            <p class="text-muted" style="font-size:12px; margin-bottom:10px;">Toque em um guerreiro para selecioná-lo e
+                depois toque na tarefa de destino para mover.</p>
+
+            <div id="selection-indicator" class="card hidden"
+                style="border: 1px solid var(--neon); background: rgba(78, 205, 196, 0.1); padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <span>Selecionado: <b id="selected-camper-name" class="text-neon">Nome</b></span>
+                <button onclick="clearSelection()" style="background:none; border:none; color:var(--fire);">✕</button>
+            </div>
+
+            <div id="admin-scales-list">
+                <!-- Accordion Injetado via JS -->
+                <div style="text-align: center; padding: 20px; color: var(--muted);">Carregando escalas...</div>
+            </div>
+        </section>
+
+        <!-- BOTTOM NAV ATUALIZADA -->
+        <nav class="bottom-nav hidden" id="bottom-nav-main">
+            <div class="nav-item active" id="nav-home" onclick="nav('home')">
+                <span class="nav-icon">🏠</span>
+                BASE
+            </div>
+            <div class="nav-item" id="nav-eudeus" onclick="nav('eudeus')">
+                <span class="nav-icon">🙏</span>
+                EU+DEUS
+            </div>
+            <div class="nav-item" id="nav-schedfull" onclick="nav('schedfull')">
+                <span class="nav-icon">📅</span>
+                AGENDA
+            </div>
+            <div class="nav-item" id="nav-passport" onclick="nav('passport')">
+                <span class="nav-icon">🛡️</span>
+                PASSAPORTE
+            </div>
+        </nav>
+    </div>
+
+    <!-- SERMON DETAIL VIEW -->
+    <section id="view-sermon-detail" class="app-view">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <button onclick="nav('eudeus')" style="background:none; border:none; color: var(--muted);">← VOLTAR</button>
+            <span id="sermon-meta-time"
+                style="color: var(--neon); font-size: 12px; border: 1px solid var(--neon); padding: 2px 8px; border-radius: 4px;">--:--</span>
+        </div>
+
+        <h1 id="sermon-title-display" style="line-height: 1.2;">TITULO SERMÃO</h1>
+        <p id="sermon-verse-display"
+            style="color: var(--text); font-style: italic; margin-bottom: 20px; font-size: 14px; border-left: 2px solid var(--sun); padding-left: 10px;">
+            Versículo chave...</p>
+
+        <!-- AREA DE ANOTAÇÕES -->
+        <div class="card">
+            <label style="color: var(--sun); font-size: 12px; display: block; margin-bottom: 5px;">RHEMA (O QUE DEUS
+                FALOU?)</label>
+            <div style="position: relative;">
+                <textarea id="note-deus" class="ob-input"
+                    style="text-align: left; height: 120px; font-size: 16px; width: 100%; box-sizing: border-box;"
+                    placeholder="Escreva aqui sua revelação..."></textarea>
+                <button onclick="startDictation('note-deus')"
+                    style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--neon); border-radius: 50%; width: 32px; height: 32px;">🎙️</button>
+            </div>
+            <button class="btn btn-outline" onclick="saveSermonNotes()"
+                style="margin-top: 10px; font-size: 12px;">SALVAR ANOTAÇÃO</button>
+        </div>
+
+        <!-- EXERCÍCIO DE FIXAÇÃO (QUIZ) -->
+        <div class="card" id="sermon-quiz-area" style="border-color: var(--neon);">
+            <h3 style="color: var(--neon); margin-bottom: 10px;">⚔️ EXERCÍCIO DE FIXAÇÃO</h3>
+            <p style="font-size: 12px; color: var(--muted); margin-bottom: 15px;">Responda para liberar o selo.</p>
+
+            <div id="quiz-container">
+                <p id="quiz-question" style="font-weight: bold; margin-bottom: 15px;">Carregando pergunta...</p>
+                <div id="quiz-options" style="display: flex; flex-direction: column; gap: 10px;">
+                    <!-- Options injected via JS -->
+                </div>
+            </div>
+            <div id="quiz-feedback" class="hidden"
+                style="margin-top: 15px; padding: 10px; text-align: center; border-radius: 4px;"></div>
+        </div>
+
+        <!-- AREA DE VALIDAÇÃO (SELO) - SÓ APARECE SE QUIZ OK OU SE NÃO TIVER QUIZ -->
+        <div class="card hidden" id="sermon-action-area">
+            <h4 style="text-align: center; margin-bottom: 10px;">VALIDAR PRESENÇA</h4>
+            <p style="text-align: center; font-size: 12px; color: var(--muted); margin-bottom: 10px;">Insira a senha
+                fornecida pelo ministrante</p>
+            <button class="btn" onclick="openSealModal(window.currentSermonId)">RESGATAR SELO</button>
+        </div>
+
+        <div class="card hidden" id="sermon-done-area"
+            style="border: 1px solid var(--neon); text-align: center; background: rgba(78, 205, 196, 0.1);">
+            <h2 class="text-neon" style="margin-bottom: 5px;">MISSÃO CUMPRIDA ✓</h2>
+            <p style="font-size: 12px;">Selo garantido e lição aprendida.</p>
+        </div>
+
+        <div style="height: 50px;"></div>
+    </section>
+
+    </div> <!-- FIM MAIN APP -->
+
+    <!-- ELEMENTOS FLUTUANTES -->
+    <input type="file" id="profile-upload" accept="image/*" style="display: none;" onchange="handleProfileUpload(this)">
+
+    <!-- MODAL DE VALIDAÇÃO -->
+    <div class="modal-overlay" id="seal-modal">
+        <div class="modal">
+            <div style="font-size: 40px; margin-bottom: 10px;" id="modal-seal-icon">🏴</div>
+            <h2 id="modal-seal-name" class="text-neon" style="margin-bottom: 5px;">NOME DO SELO</h2>
+            <p style="color: var(--muted); font-size: 14px;">Digite a senha de liberação:</p>
+            <div class="pin-display" id="pin-display"></div>
+            <div class="pin-pad">
+                <button class="btn-pad" onclick="addPin(1)">1</button>
+                <button class="btn-pad" onclick="addPin(2)">2</button>
+                <button class="btn-pad" onclick="addPin(3)">3</button>
+                <button class="btn-pad" onclick="addPin(4)">4</button>
+                <button class="btn-pad" onclick="addPin(5)">5</button>
+                <button class="btn-pad" onclick="addPin(6)">6</button>
+                <button class="btn-pad" onclick="addPin(7)">7</button>
+                <button class="btn-pad" onclick="addPin(8)">8</button>
+                <button class="btn-pad" onclick="addPin(9)">9</button>
+                <button class="btn-pad" onclick="clearPin()">C</button>
+                <button class="btn-pad" onclick="addPin(0)">0</button>
+                <button class="btn-pad" onclick="submitPin()"
+                    style="background: var(--neon); color: var(--bg);">OK</button>
+            </div>
+            <button onclick="closeModal()"
+                style="background:none; border:none; color: var(--muted); margin-top: 20px; font-family: var(--font-body); text-decoration: underline;">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- NOVO: MODAL DE PERFIL/LOGOUT -->
+    <div class="modal-overlay" id="profile-modal" style="display: none;">
+        <div class="modal">
+            <div id="profile-modal-pic"
+                style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--neon); margin: 0 auto 15px; background-size: cover; background-position: center; box-shadow: 0 0 15px var(--neon);">
+            </div>
+            <h2 id="profile-modal-name" class="text-neon" style="margin-bottom: 5px; font-size: 20px;">NOME</h2>
+            <p style="color: var(--muted); font-size: 14px; margin-bottom: 25px;">Configurações de Contra</p>
+
+            <button class="btn btn-outline"
+                onclick="document.getElementById('profile-upload').click(); closeProfileModal();"
+                style="margin-bottom: 12px; width: 100%; font-size: 14px;">👤 ALTERAR FOTO</button>
+            <button class="btn" onclick="confirmLogout()"
+                style="background: var(--fire); color: var(--bg); width: 100%; font-size: 14px; font-weight: bold;">🚪
+                SAIR DA CONTA</button>
+
+            <button onclick="closeProfileModal()"
+                style="background:none; border:none; color: var(--muted); margin-top: 20px; font-family: var(--font-body); text-decoration: underline;">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // ========== CONFIGURAÇÃO MESTRE ==========
+        const API_URL = 'https://script.google.com/macros/s/AKfycby5Msp01AjpQTQ45kn3EiGlbslGJjLUV48GloFHXpGkBTMiQ7GrXFCOcy3OzQRIMe7c/exec';
+
+        // DADOS OFF-LINE (Fallback e Base)
+        // DADOS OFF-LINE (Fallback e Base)
+        const SEALS_DATA = [
+            {
+                id: 1, name: 'Renúncia', icon: '🏴',
+                verse: 'Lucas 9:23 - "Se alguém quer vir após mim, negue-se a si mesmo..."',
+                quiz: {
+                    q: 'Qual o primeiro passo para seguir a Jesus segundo Lucas 9:23?',
+                    opts: ['Fazer boas obras', 'Negar-se a si mesmo', 'Ser batizado'],
+                    ans: 1
+                }
+            },
+            {
+                id: 2, name: 'Metanoia', icon: '🧠',
+                verse: 'Romanos 12:2 - "Transformem-se pela renovação da sua mente..."',
+                quiz: {
+                    q: 'O que significa a palavra "Metanoia"?',
+                    opts: ['Mudança de Mente/Natureza', 'Arrependimento choroso', 'Ficar em silêncio'],
+                    ans: 0
+                }
+            },
+            {
+                id: 3, name: 'Identidade', icon: '❤️',
+                verse: 'Romanos 8:15 - "receberam o Espírito que os adota como filhos..."',
+                quiz: {
+                    q: 'O que Deus disse a Jesus no batismo ANTES dele fazer qualquer milagre?',
+                    opts: ['Este é meu servo fiel', 'Este é meu Filho amado', 'Eis o Cordeiro de Deus'],
+                    ans: 1
+                }
+            },
+            {
+                id: 4, name: 'Comunhão', icon: '🤝',
+                verse: 'Eclesiastes 4:12 - "Um cordão de três dobras não se rompe..."',
+                quiz: {
+                    q: 'O que significa a expressão "ferro afia o ferro"?',
+                    opts: ['Inimigos se atacando', 'Pessoas frias se ignorando', 'Amigos que se corrigem e aperfeiçoam'],
+                    ans: 2
+                }
+            },
+            {
+                id: 5, name: 'Honra', icon: '👑',
+                verse: 'Mateus 10:40 - "Quem recebe vocês, recebe a mim..."',
+                quiz: {
+                    q: 'Por que Davi não matou Saul na caverna?',
+                    opts: ['Porque teve medo', 'Porque honrou a unção de rei nele', 'Porque esqueceu a espada'],
+                    ans: 1
+                }
+            },
+            {
+                id: 6, name: 'Serviço', icon: '🛠️',
+                verse: 'Colossenses 3:23 - "Tudo o que fizerem, façam de todo o coração..."',
+                quiz: {
+                    q: 'Quem Neemias convocou para reconstruir os muros?',
+                    opts: ['Apenas os pedreiros', 'Soldados estrangeiros', 'Todo o povo de Jerusalém'],
+                    ans: 2
+                }
+            },
+            {
+                id: 7, name: 'Envio', icon: '⚔️',
+                verse: 'Mateus 28:19 - "Portanto, vão e façam discípulos..."',
+                quiz: {
+                    q: 'Qual o principal mandamento imperativo em Mateus 28:19?',
+                    opts: ['Façam Discípulos', 'Viajem para longe', 'Construam igrejas'],
+                    ans: 0
+                }
+            }
+        ];
+
+        const FULL_SCHEDULE = [
+            // SÁBADO
+            { day: 'sab', dayLabel: 'SÁBADO', time: '13:00', task: 'Saída da Igreja' },
+            { day: 'sab', dayLabel: 'SÁBADO', time: '15:00', task: 'Organização e Instalação' },
+            { day: 'sab', dayLabel: 'SÁBADO', time: '19:00', task: 'Culto de Abertura — Sermão 1' },
+            { day: 'sab', dayLabel: 'SÁBADO', time: '20:30', task: 'Jantar' },
+            { day: 'sab', dayLabel: 'SÁBADO', time: '21:30', task: 'Livre' },
+
+            // DOMINGO
+            { day: 'dom', dayLabel: 'DOMINGO', time: '07:00', task: 'Despertar' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '07:30', task: 'Devocional' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '07:45', task: 'Café da Manhã' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '08:30', task: 'Culto — BATISMO — Sermão 2' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '10:00', task: 'Atividades ao Ar Livre' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '12:30', task: 'Almoço' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '13:00', task: 'Livre' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '15:00', task: 'Gincana' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '19:00', task: 'Culto — Sermão 3' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '20:30', task: 'Jantar' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '21:30', task: 'LUAU' },
+            { day: 'dom', dayLabel: 'DOMINGO', time: '23:00', task: 'Apagar Luzes' },
+
+            // SEGUNDA
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '07:00', task: 'Despertar' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '07:30', task: 'Devocional' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '07:45', task: 'Café da Manhã' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '08:30', task: 'Culto — Sermão 4' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '10:00', task: 'Atividades ao Ar Livre' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '12:30', task: 'Almoço' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '13:00', task: 'Livre' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '15:00', task: 'Gincana' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '19:00', task: 'Culto — Sermão 5' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '20:30', task: 'Jantar' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '21:30', task: 'CINEMA' },
+            { day: 'seg', dayLabel: 'SEGUNDA', time: '23:00', task: 'Apagar Luzes' },
+
+            // TERÇA
+            { day: 'ter', dayLabel: 'TERÇA', time: '07:00', task: 'Despertar' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '07:30', task: 'Devocional' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '07:45', task: 'Café da Manhã' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '08:30', task: 'Culto — Sermão 6' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '10:00', task: 'Atividades ao Ar Livre' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '12:30', task: 'Almoço — CHURRASCO' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '13:00', task: 'Livre' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '15:00', task: 'Gincana' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '19:00', task: 'Culto Final — Sermão 7' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '20:30', task: 'Jantar' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '21:30', task: 'Jornal e Luau' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '23:00', task: 'Encerramento' },
+            { day: 'ter', dayLabel: 'TERÇA', time: '00:00', task: 'Apagar Luzes' }
+        ];
+
+        // ========== ESTADO GLOBAL ==========
+        let USER = JSON.parse(localStorage.getItem('user_acamp2026')) || null;
+        let VOUCHER_OK = localStorage.getItem('voucher_validated') === 'true';
+        let currentSealId = null;
+        let currentSermonSealId = null;
+        let pinBuffer = "";
+        let adminCampersList = [];
+
+        // ========== API LAYER (JSONP STRICT) ==========
+        // Resolve CORS do Apps Script usando JSONP
+        let _jsonpId = 0;
+        function jsonp(url) {
+            return new Promise((resolve, reject) => {
+                const cbName = '_jsonp_cb_' + (_jsonpId++);
+                window[cbName] = (data) => {
+                    delete window[cbName];
+                    document.body.removeChild(script);
+                    resolve(data);
+                };
+                const script = document.createElement('script');
+                // Adiciona timestamp para evitar cache
+                const finalUrl = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName + '&t=' + Date.now();
+                script.src = finalUrl;
+                script.onerror = () => {
+                    delete window[cbName];
+                    document.body.removeChild(script);
+                    reject(new Error('Falha JSONP'));
+                }
+                document.body.appendChild(script);
+            });
+        }
+
+        async function apiRequest(action, payloadObj = {}) {
+            console.log('API Request:', action, payloadObj);
+
+            // 1. Check Conexão Imediato (Offline-First)
+            if (!navigator.onLine) {
+                showToast("Sem sinal de rede. Verifique sua conexão.", "error");
+                throw new Error("Offline");
+            }
+
+            // 2. Timeout de Segurança (15s)
+            const TIMEOUT_MS = 15000;
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error("Timeout - Servidor não respondeu")), TIMEOUT_MS)
+            );
+
+            const postActions = ['register', 'login', 'validateSeal', 'adminLogin', 'addAdmin', 'adminRegisterCamper', 'adminApplySeal', 'generateScales', 'updateScale', 'generateVouchers', 'validateVoucher', 'saveSermonAnswers'];
+
+            try {
+                let requestPromise;
+                if (postActions.includes(action)) {
+                    const payload = encodeURIComponent(JSON.stringify({ ...payloadObj, action }));
+                    requestPromise = jsonp(`${API_URL}?action=post&payload=${payload}`);
+                } else {
+                    requestPromise = jsonp(`${API_URL}?action=${action}`);
+                }
+
+                // Race entre Request e Timeout
+                return await Promise.race([requestPromise, timeoutPromise]);
+
+            } catch (e) {
+                console.error("API Error:", e);
+                // Se foi timeout, avisa especificamente
+                if (e.message.includes("Timeout")) {
+                    showToast("O QG está demorando para responder. Tente novamente.", "error");
+                } else if (e.message !== "Offline") {
+                    showToast("Falha na comunicação. Tente novamente.", "error");
+                }
+                throw e;
+            }
+        }
+
+        // ========== UI UTILS (TOAST) ==========
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            const icon = type === 'error' ? '⚠️' : (type === 'success' ? '✅' : 'ℹ️');
+            toast.innerHTML = `<span>${icon}</span> <span>${msg}</span>`;
+
+            container.appendChild(toast);
+
+            // Som de feedback sutil (opcional, pode ser removido se invasivo)
+            // const audio = new Audio('path/to/pop.mp3'); audio.play().catch(()=>{});
+
+            // Auto-remove
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        }
+
+        // ========== INICIALIZAÇÃO ==========
+        window.onload = () => {
+            console.log('Sistema Operacional V2 - 2026');
+            loadNotebook();
+            renderFullSchedule();
+            renderEuDeus(); // Renderiza cards bloqueados/desbloqueados
+
+            if (!USER) {
+                // Se não está logado, vai para Welcome (mesmo que tenha voucher salvo)
+                navContainer('welcome');
+            } else {
+                // Já é guerreiro
+                showMainApp();
+            }
+        }
+
+        function navContainer(screenId) {
+            document.getElementById('view-welcome').style.display = 'none';
+            document.getElementById('view-voucher').style.display = 'none';
+            document.getElementById('view-onboarding').style.display = 'none';
+            document.getElementById('view-login').style.display = 'none';
+            document.getElementById('main-app').style.display = 'none';
+
+            if (screenId === 'welcome') document.getElementById('view-welcome').style.display = 'flex';
+            if (screenId === 'voucher') document.getElementById('view-voucher').style.display = 'flex';
+            if (screenId === 'onboarding') document.getElementById('view-onboarding').style.display = 'flex';
+            if (screenId === 'login') document.getElementById('view-login').style.display = 'flex';
+            if (screenId === 'app') document.getElementById('main-app').style.display = 'block';
+        }
+
+        function openAdminDiscrete() {
+            navContainer('app');
+            nav('admin');
+        }
+
+        function showMainApp() {
+            navContainer('app');
+            let firstName = USER.nome.split(' ')[0].toUpperCase();
+            document.getElementById('user-name-display').innerText = `OLÁ, ${firstName}`;
+
+            if (USER.profilePic) {
+                document.getElementById('profile-btn').style.backgroundImage = `url(${USER.profilePic})`;
+            }
+
+            renderPassport();
+            updateProgress();
+            renderEuDeus(); // Re-renderiza para atualizar status
+        }
+
+        // ========== UTILS UI ==========
+        function loading(show) {
+            const el = document.getElementById('loading-overlay');
+            if (show) el.classList.add('active'); else el.classList.remove('active');
+        }
+
+        // ========== VOUCHER ==========
+        async function submitVoucher() {
+            const code = document.getElementById('voucher-code').value.trim().toUpperCase();
+            if (code.length < 5) return showToast('Código muito curto.', 'error');
+
+            loading(true);
+            try {
+                // Backend precisa validar esse action='validateVoucher'
+                const res = await apiRequest('validateVoucher', { code });
+                loading(false);
+                if (res.status === 'success') {
+                    localStorage.setItem('voucher_validated', 'true');
+                    VOUCHER_OK = true;
+                    navContainer('onboarding');
+                    showToast('Acesso Permitido! Cadastre-se ou entre.', 'success');
+                } else {
+                    showToast(res.message || 'Código inválido.', 'error');
+                }
+            } catch (e) {
+                loading(false);
+                showToast('Erro de conexão. Verifique sua rede.', 'error');
+            }
+        }
+
+        // ========== ONBOARDING & LOGIN ==========
+        function nextStep(n) {
+            document.querySelectorAll('.ob-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + n).classList.add('active');
+        }
+        function submitName() {
+            if (document.getElementById('reg-name').value.length > 2) nextStep(3);
+            else showToast('Nome inválido', 'error');
+        }
+        function selectSex(s, btn) {
+            document.getElementById('reg-sex').value = s;
+            document.querySelectorAll('.btn-outline').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        async function finishReg() {
+            const nome = document.getElementById('reg-name').value;
+            const dataNascimento = document.getElementById('reg-dob').value;
+            const sexo = document.getElementById('reg-sex').value;
+
+            if (!nome || !dataNascimento || !sexo) return showToast('Preencha tudo!', 'error');
+
+            loading(true);
+            const newUser = { nome, dataNascimento, sexo, selos: Array(7).fill(false) };
+            try {
+                const res = await apiRequest('register', newUser);
+                loading(false);
+                if (res.status === 'success') {
+                    newUser.id = res.id;
+                    localStorage.setItem('user_acamp2026', JSON.stringify(newUser));
+                    USER = newUser;
+                    showMainApp();
+                } else { showToast('Erro: ' + res.message, 'error'); }
+            } catch (e) { loading(false); showToast('Erro de conexão', 'error'); }
+        }
+
+        function openLoginView() { navContainer('login'); }
+        function closeLoginView() {
+            if (USER) showMainApp();
+            else navContainer('welcome');
+        }
+
+        async function submitLogin() {
+            const nome = document.getElementById('login-name').value;
+            const senha = document.getElementById('login-pass').value;
+            if (!nome || !senha) return showToast('Preencha tudo!', 'error');
+
+            loading(true);
+            try {
+                const res = await apiRequest('login', { nome, senha });
+                loading(false);
+                if (res.status === 'success') {
+                    localStorage.setItem('user_acamp2026', JSON.stringify(res.camper));
+                    USER = res.camper;
+                    showMainApp();
+                } else { showToast(res.message, 'error'); }
+            } catch (e) { loading(false); showToast('Erro de conexão', 'error'); }
+        }
+
+        // ========== APP CORE ==========
+        function nav(view) {
+            console.log('Navigating to:', view);
+            document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + view).classList.add('active');
+
+            // Controle da Bottom Nav
+            const bNav = document.getElementById('bottom-nav-main');
+            const mainAppVisible = document.getElementById('main-app').style.display !== 'none';
+            const mainTabs = ['home', 'eudeus', 'schedfull', 'passport', 'notebook', 'rules'];
+
+            if (mainAppVisible && mainTabs.includes(view)) {
+                bNav.classList.remove('hidden');
+            } else {
+                bNav.classList.add('hidden');
+            }
+
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(i => i.classList.remove('active'));
+            const b = document.getElementById('nav-' + view);
+            if (b) b.classList.add('active');
+
+            window.scrollTo(0, 0);
+        }
+
+        function renderPassport() {
+            // Update Header Info
+            const firstName = USER.nome.split(' ')[0].toUpperCase();
+            document.getElementById('pp-name').innerText = firstName;
+            if (USER.profilePic) document.getElementById('pp-photo').src = USER.profilePic;
+
+            const grid = document.getElementById('passport-grid');
+            grid.innerHTML = '';
+            SEALS_DATA.forEach((seal, idx) => {
+                const has = USER.selos[idx];
+                grid.innerHTML += `
+                    <div class="seal-card ${has ? 'owned' : ''}" onclick="openSealModal(${seal.id})" style="position: relative;">
+                        <div class="seal-icon" style="font-size: 24px;">${seal.icon}</div>
+                        <div class="seal-name" style="font-size: 10px;">${seal.name}</div>
+                        ${has ? '<div style="position:absolute; top:-5px; right:-5px; background:var(--bg); border-radius:50%; border:1px solid var(--neon); width:15px; height:15px; display:flex; align-items:center; justify-content:center; font-size:10px; color:var(--neon);">✓</div>' : ''}
+                    </div>
+                `;
+            });
+        }
+
+        function updateProgress() {
+            if (!USER) return;
+            const c = USER.selos.filter(Boolean).length;
+            document.getElementById('progress-bar').style.width = (c / 7) * 100 + '%';
+            document.getElementById('progress-text').innerText = `${c}/7 SELOS`;
+
+            // Update Next Event Widget
+            updateNextEventWidget();
+        }
+
+        function updateNextEventWidget() {
+            // Simple Logic: Find first event after now
+            const now = new Date();
+            const daysMap = { 0: 'dom', 1: 'seg', 2: 'ter', 6: 'sab' }; // JS Day to App Day
+            const todayKey = daysMap[now.getDay()];
+
+            if (!todayKey) {
+                document.getElementById('next-event-name').innerText = "Sem eventos hoje";
+                return;
+            }
+
+            const currentHour = now.getHours();
+            const currentMin = now.getMinutes();
+            const currentTimeVal = currentHour * 60 + currentMin;
+
+            const todayEvents = FULL_SCHEDULE.filter(e => e.day === todayKey);
+            const next = todayEvents.find(e => {
+                const [h, m] = e.time.split(':').map(Number);
+                return (h * 60 + m) > currentTimeVal;
+            });
+
+            if (next) {
+                document.getElementById('next-event-time').innerText = next.time;
+                document.getElementById('next-event-name').innerText = next.task;
+                document.getElementById('next-event-day').innerText = "PRÓXIMA ATIVIDADE";
+            } else {
+                document.getElementById('next-event-time').innerText = "--:--";
+                document.getElementById('next-event-name').innerText = "Bom descanso";
+            }
+        }
+
+        // ========== EU + DEUS & QUIZ ==========
+        function renderEuDeus() {
+            const list = document.getElementById('sermons-list');
+            list.innerHTML = '';
+            SEALS_DATA.forEach((seal, i) => {
+                const isDone = USER && USER.selos[i];
+                list.innerHTML += `
+                    <div class="card" onclick="openSermonDetail(${seal.id})" style="border-left: 4px solid ${isDone ? 'var(--neon)' : 'var(--muted)'}; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h4 style="color:${isDone ? 'var(--neon)' : 'var(--text)'}; margin-bottom: 5px;">${seal.name.toUpperCase()}</h4>
+                            <p style="font-size:10px; color:var(--muted); font-style: italic;">"${seal.verse.substring(0, 30)}..."</p>
+                        </div>
+                        <div style="font-size: 20px;">${isDone ? '✅' : '🔒'}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function openSermonDetail(id) {
+            window.currentSermonId = id; // Global for modal
+            const seal = SEALS_DATA[id - 1];
+
+            document.getElementById('sermon-title-display').innerText = `SERMÃO: ${seal.name.toUpperCase()}`;
+            document.getElementById('sermon-verse-display').innerText = seal.verse;
+            document.getElementById('sermon-meta-time').innerText = "Sermão " + id;
+
+            // Load Local Notes
+            const saved = JSON.parse(localStorage.getItem(`note_sermon_${id}`)) || { d: '' };
+            document.getElementById('note-deus').value = saved.d;
+
+            // Quiz Setup
+            const quizContainer = document.getElementById('quiz-container');
+            const quizFeedback = document.getElementById('quiz-feedback');
+            const actionArea = document.getElementById('sermon-action-area');
+            const doneArea = document.getElementById('sermon-done-area');
+            const quizArea = document.getElementById('sermon-quiz-area');
+
+            const isSealed = USER.selos[id - 1];
+            const quizState = JSON.parse(localStorage.getItem(`quiz_sermon_${id}`)) || { solved: false };
+
+            // Reset UI
+            quizFeedback.classList.add('hidden');
+            actionArea.classList.add('hidden');
+            doneArea.classList.add('hidden');
+            quizArea.classList.remove('hidden');
+
+            if (isSealed) {
+                // Já tem selo, esconde quiz e mostra done
+                quizArea.classList.add('hidden');
+                doneArea.classList.remove('hidden');
+            } else if (quizState.solved) {
+                // Quiz já feito, mas sem selo ainda
+                quizArea.classList.add('hidden');
+                actionArea.classList.remove('hidden');
+            } else {
+                // Precisa fazer o quiz
+                document.getElementById('quiz-question').innerText = seal.quiz.q;
+                const optsDiv = document.getElementById('quiz-options');
+                optsDiv.innerHTML = '';
+                seal.quiz.opts.forEach((opt, idx) => {
+                    optsDiv.innerHTML += `
+                        <button class="btn btn-outline" onclick="checkQuizAnswer(${id}, ${idx}, this)" style="text-align: left; padding: 10px;">
+                            ${String.fromCharCode(65 + idx)}) ${opt}
+                        </button>
+                    `;
+                });
+            }
+
+            nav('sermon-detail');
+        }
+
+        function checkQuizAnswer(sealId, selectedIdx, btnElem) {
+            const seal = SEALS_DATA[sealId - 1];
+            const feedback = document.getElementById('quiz-feedback');
+
+            if (selectedIdx === seal.quiz.ans) {
+                // ACERTOU
+                btnElem.style.background = 'var(--neon)';
+                btnElem.style.color = 'var(--bg)';
+                feedback.innerHTML = '<span style="color:var(--neon)">RESPOSTA CORRETA! ✓</span>';
+                feedback.classList.remove('hidden');
+
+                // Save State
+                localStorage.setItem(`quiz_sermon_${sealId}`, JSON.stringify({ solved: true }));
+
+                // Show Action Area after delay
+                setTimeout(() => {
+                    document.getElementById('sermon-quiz-area').classList.add('hidden');
+                    document.getElementById('sermon-action-area').classList.remove('hidden');
+                }, 1000);
+
+            } else {
+                // ERROU
+                btnElem.style.background = 'var(--fire)';
+                feedback.innerHTML = '<span style="color:var(--fire)">TENTE NOVAMENTE.</span>';
+                feedback.classList.remove('hidden');
+                setTimeout(() => {
+                    btnElem.style.background = 'transparent';
+                    feedback.classList.add('hidden');
+                }, 1500);
+            }
+        }
+
+        async function saveSermonNotes() {
+            const id = window.currentSermonId;
+            const notes = { d: document.getElementById('note-deus').value };
+            localStorage.setItem(`note_sermon_${id}`, JSON.stringify(notes));
+
+            // Sync Backend
+            try {
+                await apiRequest('saveSermon', { camperId: USER.id, sealNum: id, ...notes });
+            } catch (e) { }
+            showToast('Anotação Salva!', 'success');
+        }
+
+        // ========== PIN PAD ==========
+        function openSealModal(id) {
+            if (USER.selos[id - 1]) return;
+            currentSealId = id;
+            document.getElementById('modal-seal-name').innerText = SEALS_DATA[id - 1].name;
+            document.getElementById('modal-seal-icon').innerText = SEALS_DATA[id - 1].icon;
+            document.getElementById('seal-modal').style.display = 'flex';
+            clearPin();
+        }
+        function closeModal() { document.getElementById('seal-modal').style.display = 'none'; }
+        function addPin(n) { if (pinBuffer.length < 4) { pinBuffer += n; updatePinDisplay(); } }
+        function clearPin() { pinBuffer = ''; updatePinDisplay(); }
+        function updatePinDisplay() { document.getElementById('pin-display').innerText = pinBuffer.padEnd(4, '•'); }
+
+        async function submitPin() {
+            if (pinBuffer.length !== 4) return;
+            loading(true);
+
+            // Auto-save sermon notes if validating via sermon screen
+            if (window.currentSermonId === currentSealId) {
+                const notes = { d: document.getElementById('note-deus').value };
+                localStorage.setItem(`note_sermon_${currentSealId}`, JSON.stringify(notes));
+                try { await apiRequest('saveSermon', { camperId: USER.id, sealNum: currentSealId, ...notes }); } catch (e) { }
+            }
+
+            try {
+                const res = await apiRequest('validateSeal', {
+                    camperId: USER.id,
+                    sealNum: currentSealId,
+                    password: pinBuffer
+                });
+                loading(false);
+                if (res.status === 'success') {
+                    USER.selos[currentSealId - 1] = true;
+                    localStorage.setItem('user_acamp2026', JSON.stringify(USER));
+                    closeModal();
+                    showToast('CONQUISTADO!', 'success'); // Simple alert instead of confetti for simplicity if library missing
+                    // triggerConfetti(); // Optional if library exists
+                    renderPassport();
+                    updateProgress();
+                    renderEuDeus();
+                    if (window.currentSermonId === currentSealId) openSermonDetail(currentSealId);
+                } else {
+                    showToast('Senha Incorreta!', 'error');
+                    clearPin();
+                }
+            } catch (e) { loading(false); showToast('Erro de conexão', 'error'); }
+        }
+
+        // ========== ADMIN ==========
+        async function performAdminLogin() {
+            const email = document.getElementById('adm-email').value;
+            const pass = document.getElementById('adm-pass').value;
+            loading(true);
+            try {
+                const res = await apiRequest('adminLogin', { email, senha: pass });
+                loading(false);
+                if (res.status === 'success') {
+                    document.getElementById('admin-login-form').classList.add('hidden');
+                    document.getElementById('admin-panel').classList.remove('hidden');
+                    loadAdminData();
+                } else { showToast(res.message, 'error'); }
+            } catch (e) { loading(false); alert('Erro'); }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('admin-login-form').classList.remove('hidden');
+        }
+
+        async function loadAdminData() {
+            document.getElementById('camper-list').innerHTML = 'Carregando...';
+            try {
+                const res = await apiRequest('getAll');
+                if (res.status === 'success') {
+                    adminCampersList = res.campers;
+                    document.getElementById('stat-total').innerText = adminCampersList.length;
+                    renderCamperList(adminCampersList);
+                }
+            } catch (e) { }
+        }
+
+        function renderCamperList(list) {
+            document.getElementById('camper-list').innerHTML = list.map(c => `
+                <div class="card" style="padding:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                    <div><strong>${c.nome}</strong><br><small>${c.sexo} • ${c.idade}a</small></div>
+                    <small>${c.selos.filter(Boolean).length} Selos</small>
+                </div>
+            `).join('');
+        }
+
+        function filterAdmin(f) {
+            if (f === 'all') renderCamperList(adminCampersList);
+            if (f === 'M') renderCamperList(adminCampersList.filter(c => c.sexo === 'M'));
+            if (f === 'F') renderCamperList(adminCampersList.filter(c => c.sexo === 'F'));
+        }
+
+        async function promptVouchers() {
+            const q = prompt('Quantos?', '10');
+            if (!q) return;
+            loading(true);
+            try {
+                const res = await apiRequest('generateVouchers', { qtd: q, adminEmail: 'master' });
+                loading(false);
+                if (res.status === 'success') {
+                    showToast('Códigos gerados:<br>' + res.codes.join('<br>'), 'success');
+                } else showToast('Erro: ' + res.message, 'error');
+            } catch (e) { loading(false); alert('Erro'); }
+        }
+
+        // ========== AGENDA COMPLETAS ==========
+        function renderFullSchedule(list) {
+            if (!list) list = FULL_SCHEDULE;
+            const tbody = document.getElementById('full-sched-body');
+            tbody.innerHTML = '';
+
+            let lastDay = '';
+
+            list.forEach(row => {
+                // Day Separator if needed (only if showing multiple days)
+                if (row.dayLabel !== lastDay && list.length > 15) { // Heuristic for "All" view
+                    tbody.innerHTML += `
+                        <tr style="background: rgba(255,255,255,0.1);">
+                            <td colspan="2" style="padding: 10px; font-weight: bold; color: var(--sun);">${row.dayLabel}</td>
+                        </tr>
+                    `;
+                    lastDay = row.dayLabel;
+                }
+
+                tbody.innerHTML += `
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 12px 10px; color: var(--neon); font-family: monospace;">${row.time}</td>
+                        <td style="padding: 12px 10px;">${row.task}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function filterSchedule(filter, btn) {
+            // Reset ALL buttons in the container
+            const container = btn.parentNode;
+            container.querySelectorAll('button').forEach(b => {
+                b.classList.remove('btn-neon', 'active-sched-tab');
+                b.classList.add('btn-outline');
+            });
+
+            // Activate clicked button
+            btn.classList.remove('btn-outline');
+            btn.classList.add('btn-neon', 'active-sched-tab');
+
+            if (filter === 'all') {
+                renderFullSchedule(FULL_SCHEDULE);
+            } else {
+                const filtered = FULL_SCHEDULE.filter(i => i.day === filter);
+                renderFullSchedule(filtered);
+            }
+        }
+
+        function startDictation(id) {
+            if (!('webkitSpeechRecognition' in window)) return showToast('Use Chrome para ditar', 'error');
+            const r = new webkitSpeechRecognition();
+            r.lang = 'pt-BR';
+            r.start();
+            r.onresult = (e) => {
+                const t = e.results[0][0].transcript;
+                document.getElementById(id).value += ' ' + t;
+            }
+        }
+
+        function openProfile() {
+            const pic = USER.profilePic || `https://ui-avatars.com/api/?name=${USER.nome}&background=random`;
+            document.getElementById('profile-modal-pic').style.backgroundImage = `url(${pic})`;
+            document.getElementById('profile-modal-name').innerText = USER.nome.toUpperCase();
+            document.getElementById('profile-modal').style.display = 'flex';
+        }
+        function closeProfileModal() {
+            document.getElementById('profile-modal').style.display = 'none';
+        }
+        function confirmLogout() {
+            if (confirm('Deseja realmente sair da sua conta? Todas as anotações não sincronizadas podem ser perdidas.')) {
+                localStorage.removeItem('user_acamp2026');
+                location.reload();
+            }
+        }
+        function handleProfileUpload(inp) {
+            if (inp.files[0]) {
+                const r = new FileReader();
+                r.onload = e => {
+                    USER.profilePic = e.target.result;
+                    localStorage.setItem('user_acamp2026', JSON.stringify(USER));
+                    showMainApp();
+                };
+                r.readAsDataURL(inp.files[0]);
+            }
+        }
+        function loadNotebook() { document.getElementById('notebook-area').value = localStorage.getItem('user_notes') || ''; }
+        document.getElementById('notebook-area').addEventListener('input', e => localStorage.setItem('user_notes', e.target.value));
+        function shareNotes() {
+            const t = document.getElementById('notebook-area').value;
+            if (navigator.share) navigator.share({ text: t }); else navigator.clipboard.writeText(t).then(() => showToast('Copiado para área de transferência', 'success'));
+        }
+
+        function triggerConfetti() {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        }
+
+        // ========== ESCALAS FRONTEND ==========
+        let cachedScales = [];
+        let selectedCamperForMove = null;
+
+        // 1. Minhas Escalas
+        async function loadMyScales() {
+            document.getElementById('my-scales-list').innerHTML = '<p class="text-muted text-center">Buscando ordens...</p>';
+            try {
+                const res = await apiRequest('getScales');
+                if (res.status === 'success') {
+                    cachedScales = res.escalas;
+                    renderMyScales(res.escalas);
+                } else {
+                    document.getElementById('my-scales-list').innerHTML = '<p>Erro ao carregar.</p>';
+                }
+            } catch (e) {
+                document.getElementById('my-scales-list').innerHTML = '<p>Erro de conexão.</p>';
+            }
+        }
+
+        function renderMyScales(escalas) {
+            const myTasks = [];
+            escalas.forEach(task => {
+                const me = task.equipe.find(p => p.id === USER.id);
+                if (me) myTasks.push(task);
+            });
+
+            const list = document.getElementById('my-scales-list');
+            if (myTasks.length === 0) {
+                list.innerHTML = `
+                    <div class="card" style="text-align:center; padding:30px;">
+                        <h3>SEM MISSÕES</h3>
+                        <p class="text-muted">Aguarde as ordens do comando.</p>
+                    </div>`;
+                return;
+            }
+
+            list.innerHTML = myTasks.map(t => `
+                <div class="card" style="border-left: 4px solid var(--neon);">
+                    <h3 class="text-neon">${t.nome}</h3>
+                    <div style="display:flex; justify-content:space-between; margin-top:10px;">
+                        <span>📅 ${t.dia}</span>
+                        <span>⏰ ${t.hora}</span>
+                    </div>
+                    <div style="margin-top:10px; font-size:12px; color:var(--muted);">
+                        Líder: ${t.lider || 'N/A'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Hook na navegação para carregar dados
+        const originalNav = nav;
+        nav = function (view) {
+            originalNav(view);
+            if (view === 'my-scales') loadMyScales();
+            if (view === 'admin-scales') loadAdminScales();
+        };
+
+        // 2. Admin Escalas
+        async function loadAdminScales() {
+            document.getElementById('admin-scales-list').innerHTML = 'Carregando...';
+            try {
+                const res = await apiRequest('getScales');
+                if (res.status === 'success') {
+                    cachedScales = res.escalas;
+                    renderAdminScalesUI();
+                }
+            } catch (e) { alert('Erro ao carregar escalas.'); }
+        }
+
+        function renderAdminScalesUI() {
+            const div = document.getElementById('admin-scales-list');
+            div.innerHTML = cachedScales.map(t => `
+                <div class="card" style="margin-bottom:15px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:10px;">
+                        <div>
+                            <strong class="text-sun">${t.nome}</strong>
+                            <div style="font-size:12px;">${t.dia} • ${t.hora}</div>
+                        </div>
+                        <button class="btn btn-outline" onclick="moveSelectionHere('${t.id}')" style="width:auto; padding:5px 10px; font-size:12px;">MOVER P/ CÁ</button>
+                    </div>
+                    
+                    <div style="display:flex; flex-wrap:wrap; gap:5px;">
+                        ${t.equipe.map(p => `
+                            <div onclick="selectCamperForMove('${p.id}', '${p.nome}', '${t.id}')" 
+                                style="background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:5px; font-size:12px; cursor:pointer; border:1px solid ${p.locked ? 'var(--fire)' : 'transparent'};">
+                                ${p.nome} ${p.locked ? '🔒' : ''}
+                            </div>
+                        `).join('')}
+                        ${t.equipe.length === 0 ? '<span class="text-muted" style="font-size:12px;">Vazio</span>' : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectCamperForMove(id, nome, originTaskId) {
+            selectedCamperForMove = { id, nome, originTaskId };
+            document.getElementById('selected-camper-name').innerText = nome;
+            document.getElementById('selection-indicator').classList.remove('hidden');
+        }
+
+        function clearSelection() {
+            selectedCamperForMove = null;
+            document.getElementById('selection-indicator').classList.add('hidden');
+        }
+
+        async function moveSelectionHere(targetTaskId) {
+            if (!selectedCamperForMove) return showToast('Selecione alguém primeiro!', 'error');
+            if (selectedCamperForMove.originTaskId === targetTaskId) return showToast('Já está nesta tarefa.', 'error');
+
+            loading(true);
+            try {
+                // Remove da origem
+                await apiRequest('updateScale', {
+                    subAction: 'remove',
+                    tarefaId: selectedCamperForMove.originTaskId,
+                    camperId: selectedCamperForMove.id
+                });
+
+                // Adiciona no destino
+                await apiRequest('updateScale', {
+                    subAction: 'add',
+                    tarefaId: targetTaskId,
+                    camperId: selectedCamperForMove.id,
+                    nomeAcampante: selectedCamperForMove.nome
+                });
+
+                // Refresh
+                await loadAdminScales();
+                clearSelection();
+                loading(false);
+            } catch (e) {
+                loading(false);
+                showToast('Erro ao mover.', 'error');
+            }
+        }
+
+        async function runAutoScales() {
+            if (!confirm('Isso vai redistribuir as escalas não travadas. Continuar?')) return;
+            loading(true);
+            try {
+                const res = await apiRequest('generateScales');
+                loading(false);
+                if (res.status === 'success') {
+                    showToast(res.message, 'success');
+                    loadAdminScales();
+                } else {
+                    showToast('Erro: ' + res.message, 'error');
+                }
+            } catch (e) { loading(false); alert('Erro conexão'); }
+        }
+
+    </script>
+</body>
+
+</html>

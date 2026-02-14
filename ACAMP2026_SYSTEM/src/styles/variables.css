@@ -1,0 +1,63 @@
+:root {
+  /* Paleta "A FORJA" - Inspirada no Logo */
+  --color-wood-dark: #2d1e17;
+  --color-wood-medium: #4a3429;
+  --color-wood-light: #6b4f3b;
+  --color-fire: #d35400;
+  --color-fire-glow: #e67e22;
+  --color-gold: #c59d5f;
+  --color-parchment: #f4ebd0;
+  --color-forest: #3e4a3d;
+  --color-slate: #2c3e50;
+
+  /* Semântica */
+  --bg-main: var(--color-wood-dark);
+  --bg-card: #3a2a22;
+  --text-main: var(--color-parchment);
+  --text-dim: #bda28b;
+  --primary: var(--color-gold);
+  --accent: var(--color-fire);
+
+  /* Tipografia */
+  --font-display: 'Bebas Neue', system-ui;
+  --font-body: 'Outfit', sans-serif;
+
+  /* Efeitos */
+  --shadow-rustic: 4px 4px 0px rgba(0, 0, 0, 0.4);
+  --border-rustic: 2px solid var(--color-gold);
+  --radius-rustic: 4px;
+  /* Menos arredondado, mais entalhado */
+}
+
+body {
+  background-color: var(--bg-main);
+  background-image: radial-gradient(circle at top, rgba(211, 84, 0, 0.1) 0%, transparent 70%);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Scrollbar Rústica */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-wood-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}

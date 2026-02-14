@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial - Discípulo Radical</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #1a1a1d;
+            --card: #2a2a2e;
+            --fire: #ff6b6b;
+            --neon: #4ecdc4;
+            --sun: #ffe66d;
+            --text: #f7f7f7;
+            --muted: #888888;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 100%;
+            max-width: 600px;
+            background: radial-gradient(circle at top, #2a2a2e 0%, #1a1a1d 80%);
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decoration Lines */
+        .line-deco {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--neon), var(--fire));
+            z-index: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', display;
+            font-size: 64px;
+            margin: 0;
+            line-height: 0.9;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', display;
+            color: var(--neon);
+            letter-spacing: 5px;
+            margin: 10px 0;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 60px;
+            padding-left: 40px;
+            z-index: 1;
+        }
+
+        .step-num {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--bg);
+            border: 2px solid var(--neon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue';
+            color: var(--neon);
+            font-size: 20px;
+            z-index: 2;
+        }
+
+        .card-mockup {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Elements specifics */
+        .btn-mock {
+            background: var(--fire);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Bebas Neue';
+            border-radius: 8px;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+        }
+
+        .highlight {
+            color: var(--neon);
+            font-weight: bold;
+        }
+
+        /* Steps Specifics */
+        .step-title {
+            font-family: 'Bebas Neue';
+            font-size: 32px;
+            margin: 0;
+            color: var(--fire);
+        }
+
+        .step-desc {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="infographic">
+        <div class="line-deco"></div>
+
+        <header>
+            <h2>GUIA DE CAMPO</h2>
+            <h1>JORNADA<br><span style="color:var(--fire)">GUERREIRO</span></h1>
+            <p style="color:var(--muted)">MANUAL TÁTICO DE ACESSO AO APP</p>
+        </header>
+
+        <!-- STEP 1 -->
+        <div class="step">
+            <div class="step-num">01</div>
+            <h3 class="step-title">ACESSO RESTRITO</h3>
+            <p class="step-desc">Seu primeiro contato com o front. Insira o código único do seu voucher.</p>
+            <div class="card-mockup" style="text-align: center;">
+                <div style="font-family: 'Bebas Neue'; font-size: 24px;">ACESSO <span
+                        style="color:var(--fire)">RESTRITO</span></div>
+                <div
+                    style="border-bottom: 2px solid var(--neon); color: var(--text); padding: 5px; margin: 15px 0; font-family:'Bebas Neue'; font-size: 20px;">
+                    ACAMP-X9Z2</div>
+                <div class="btn-mock">VALIDAR</div>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step">
+            <div class="step-num">02</div>
+            <h3 class="step-title" style="color:var(--neon)">ALISTAMENTO</h3>
+            <p class="step-desc">Defina sua identidade. Escolha seu <span class="highlight">Nome de Guerra</span>.</p>
+            <div class="card-mockup">
+                <div style="color: var(--muted); font-size: 10px;">NOME DE GUERRA</div>
+                <div
+                    style="font-family: 'Bebas Neue'; font-size: 24px; border-bottom: 1px solid var(--muted); padding: 5px 0;">
+                    SOLDADO RYAN</div>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <div
+                        style="border: 1px solid var(--neon); padding: 5px; flex: 1; text-align: center; color: var(--neon); font-size: 12px; border-radius: 4px;">
+                        MASCULINO</div>
+                    <div
+                        style="border: 1px solid var(--muted); padding: 5px; flex: 1; text-align: center; color: var(--muted); font-size: 12px; border-radius: 4px;">
+                        FEMININO</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step">
+            <div class="step-num">03</div>
+            <h3 class="step-title">DASHBOARD</h3>
+            <p class="step-desc">Acompanhe seu <span class="highlight">Progresso</span> e a <span
+                    class="highlight">Próxima Missão</span>.</p>
+            <div class="card-mockup">
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <span style="font-size:10px; font-weight:bold; color:var(--neon)">PROGRESSO</span>
+                    <span style="font-size:10px; font-weight:bold;">1/7 SELOS</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.1); height:6px; border-radius:3px;">
+                    <div style="background:var(--neon); width:15%; height:100%; border-radius:3px;"></div>
+                </div>
+                <div style="margin-top: 15px; border-left: 3px solid var(--sun); padding-left: 10px;">
+                    <div style="font-family:'Bebas Neue'; font-size: 24px; color:var(--neon)">14:00</div>
+                    <div style="font-size: 12px; font-weight: bold;">CULTO DE ABERTURA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step">
+            <div class="step-num">04</div>
+            <h3 class="step-title" style="color:var(--sun)">PASSAPORTE</h3>
+            <p class="step-desc">Colecione selos. Cada missão cumprida é uma marca na sua história.</p>
+            <div class="card-mockup">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                    <div
+                        style="aspect-ratio:1; border:1px solid var(--neon); background:rgba(78,205,196,0.1); border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                        🛡️</div>
+                    <div
+                        style="aspect-ratio:1; border:1px solid var(--muted); opacity:0.3; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                        ⚔️</div>
+                    <div
+                        style="aspect-ratio:1; border:1px solid var(--muted); opacity:0.3; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                        🔥</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: var(--muted); font-size: 12px;">
+            PROJETO ACAMP 2026 • DISCÍPULO RADICAL
+        </div>
+
+    </div>
+
+</body>
+
+</html>

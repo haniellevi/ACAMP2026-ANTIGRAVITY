@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;800&family=Special+Elite&display=swap');
+
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+
+  /* Cores Padrão das Variáveis Rústicas */
+  --bg-main: #2d1e17;
+  --bg-card: #3a2a22;
+  --text-main: #f4ebd0;
+  --color-gold: #c59d5f;
+  --color-fire: #d35400;
+  --color-wood-dark: #2d1e17;
+  --color-wood-light: #6b4f3b;
+  --radius-rustic: 4px;
+  --shadow-rustic: 4px 4px 0px rgba(0, 0, 0, 0.4);
+  --font-body: 'Outfit', sans-serif;
+  --font-title: 'Bebas Neue', system-ui;
+
+  color: var(--text-main);
+  background-color: var(--bg-main);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: var(--bg-main);
+  background-attachment: fixed;
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Scrollbar Rústica */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-wood-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-wood-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Efeito de Papel Envelhecido / Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Animações de Entrada Globais */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Custom Utilities */
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-fire {
+  color: var(--color-fire);
+}
+
+.bg-rustic {
+  background: var(--bg-card);
+}
