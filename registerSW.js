@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/ACAMP2026-ANTIGRAVITY/sw.js', { scope: '/ACAMP2026-ANTIGRAVITY/' })})}
